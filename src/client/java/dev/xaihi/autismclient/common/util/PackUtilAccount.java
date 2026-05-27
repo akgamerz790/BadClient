@@ -7,8 +7,8 @@ import net.minecraft.client.User;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import de.florianreuth.waybackauthlib.InvalidCredentialsException;
-import de.florianreuth.waybackauthlib.WaybackAuthLib;
+import dev.xaihi.autismclient.common.waybackauthlib.InvalidCredentialsException;
+import dev.xaihi.autismclient.common.waybackauthlib.WaybackAuthLib;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
 import java.util.Optional;

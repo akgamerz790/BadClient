@@ -389,7 +389,7 @@ public final class PackUtilPayloadSupport {
         return cached;
     }
 
-    public static autismclient.util.macro.PayloadAction seedActionFromEntry(PackUtilPacketLoggerOverlay.LogEntry entry) {
+    public static dev.xaihi.autismclient.common.util.macro.PayloadAction seedActionFromEntry(PackUtilPacketLoggerOverlay.LogEntry entry) {
         PayloadSnapshot snapshot = snapshotFromEntry(entry);
         if (snapshot == null) return null;
         autismclient.util.macro.PayloadAction action = new autismclient.util.macro.PayloadAction();

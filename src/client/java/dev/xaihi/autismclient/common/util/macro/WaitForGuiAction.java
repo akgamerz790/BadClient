@@ -1,4 +1,4 @@
-import dev.xaihi.autismclient.common.util.macro;
+package dev.xaihi.autismclient.common.util.macro;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;

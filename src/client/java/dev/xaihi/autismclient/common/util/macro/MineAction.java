@@ -1,4 +1,4 @@
-import dev.xaihi.autismclient.common.util.macro;
+package dev.xaihi.autismclient.common.util.macro;
 
 import dev.xaihi.autismclient.common.util.PackUtilRegistryLabels;
 import net.minecraft.client.Minecraft;
