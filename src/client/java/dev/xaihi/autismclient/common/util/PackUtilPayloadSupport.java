@@ -392,7 +392,7 @@ public final class PackUtilPayloadSupport {
     public static dev.xaihi.autismclient.common.util.macro.PayloadAction seedActionFromEntry(PackUtilPacketLoggerOverlay.LogEntry entry) {
         PayloadSnapshot snapshot = snapshotFromEntry(entry);
         if (snapshot == null) return null;
-        autismclient.util.macro.PayloadAction action = new autismclient.util.macro.PayloadAction();
+        dev.xaihi.autismclient.common.util.macro.PayloadAction action = new dev.xaihi.autismclient.common.util.macro.PayloadAction();
         action.channel = snapshot.channel();
         action.payloadData = toHex(snapshot.rawBytes());
         action.payloadClassName = "";

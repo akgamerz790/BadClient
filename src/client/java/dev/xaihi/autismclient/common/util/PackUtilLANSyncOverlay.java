@@ -301,7 +301,7 @@ public class PackUtilLANSyncOverlay extends PackUtilOverlayBase {
                     if (selectedMacroName != null) h += 4 * 12;
                     h += BUTTON_HEIGHT + 6;
                 }
-                if (autismclient.util.macro.MacroExecutor.isRunning()) h += BUTTON_HEIGHT + 6;
+                if (dev.xaihi.autismclient.common.util.macro.MacroExecutor.isRunning()) h += BUTTON_HEIGHT + 6;
                 h += 1 + 6 + 14 + 14;
                 return h;
             }
@@ -977,7 +977,7 @@ public class PackUtilLANSyncOverlay extends PackUtilOverlayBase {
             cy = renderExecuteSameMacro(ctx, mx, my, cy, lx, btnW, sync);
         }
 
-        boolean anyRunning = autismclient.util.macro.MacroExecutor.isRunning();
+        boolean anyRunning = dev.xaihi.autismclient.common.util.macro.MacroExecutor.isRunning();
         if (anyRunning) {
             drawOverlayButton(ctx, lx, cy, btnW, BUTTON_HEIGHT, "Sync Stop All", PackUiOverlayButton.Variant.DANGER, true, mx, my);
             clickRegions.add(new ClickRegion(lx, cy, btnW, BUTTON_HEIGHT, () -> sync.broadcastStopAll()));
@@ -1552,8 +1552,8 @@ public class PackUtilLANSyncOverlay extends PackUtilOverlayBase {
 
     public static int countActionDifferences(PackUtilMacro a, PackUtilMacro b) {
         if (a == null || b == null) return -1;
-        List<autismclient.util.macro.MacroAction> aActions = a.actions != null ? a.actions : java.util.Collections.emptyList();
-        List<autismclient.util.macro.MacroAction> bActions = b.actions != null ? b.actions : java.util.Collections.emptyList();
+        List<dev.xaihi.autismclient.common.util.macro.MacroAction> aActions = a.actions != null ? a.actions : java.util.Collections.emptyList();
+        List<dev.xaihi.autismclient.common.util.macro.MacroAction> bActions = b.actions != null ? b.actions : java.util.Collections.emptyList();
 
         int diffs = 0;
         int maxLen = Math.max(aActions.size(), bActions.size());

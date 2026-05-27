@@ -7,6 +7,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
+
 public class PacketAction implements MacroAction {
     public String packetData = "";
     public boolean regenerate = true;
@@ -52,7 +54,7 @@ public class PacketAction implements MacroAction {
 
         } catch (Exception e) {
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§cPacket send error: " + e.getMessage());
-            autismclient.AutismClientAddon.LOG.error("[MacroExecutor] Packet action failed", e);
+            AutismClientAddon.LOG.error("[MacroExecutor] Packet action failed", e);
         }
     }
 

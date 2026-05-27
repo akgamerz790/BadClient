@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import dev.xaihi.autismclient.common.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.macro.CraftAction;
 import net.minecraft.client.gui.screens.Screen;
@@ -578,7 +578,7 @@ public final class PackUtilSharedState {
                             if (packetToSend == null) {
                                 continue;
                             }
-                            autismclient.util.PackUtilPacketSender.send(packetToSend);
+                            dev.xaihi.autismclient.common.util.PackUtilPacketSender.send(packetToSend);
                         } else {
                             AutismClientAddon.LOG.warn("[PackUtil] Skipped sending invalid C2S packet during flush: {}", qp.packet.getClass().getName());
                         }

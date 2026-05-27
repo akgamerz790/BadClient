@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.common.modules;
 
-import dev.xaihi.autismclient.common.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import dev.xaihi.autismclient.common.util.PackUtilClientMessaging;
 import dev.xaihi.autismclient.common.util.PackUtilConfig;
 import dev.xaihi.autismclient.common.util.PackUtilLANSync;
@@ -203,7 +203,7 @@ public final class PackUtilModule {
     public void capturePassivePayloadPacket(Packet<?> packet, String direction, String protocolPhase) {
         if (!isPassivePayloadCaptureActive()) return;
         if (!PackUtilPacketLoggerOverlay.isPayloadPacket(packet)) return;
-        autismclient.util.PackUtilPayloadSupport.rememberPayloadProtocol(packet, protocolPhase);
+        dev.xaihi.autismclient.common.util.PackUtilPayloadSupport.rememberPayloadProtocol(packet, protocolPhase);
 
         PackUtilPacketLoggerOverlay logger = getPacketLoggerOverlay();
         if (logger != null) {
@@ -523,7 +523,7 @@ public final class PackUtilModule {
 
         boolean active = false;
         if (config != null && config.xCarry && MC.player != null && MC.player.inventoryMenu != null) {
-            active = autismclient.util.macro.XCarryAction.hasStoredItems(MC.player.inventoryMenu, true);
+            active = dev.xaihi.autismclient.common.util.macro.XCarryAction.hasStoredItems(MC.player.inventoryMenu, true);
         }
 
         shared.setXCarryActive(active);
@@ -668,8 +668,8 @@ public final class PackUtilModule {
             boolean pressed = isBindPressed(macro.keyCode);
             boolean wasPressed = macroKeyStates.getOrDefault(macro.name, false);
             if (pressed && !wasPressed) {
-                if (autismclient.util.macro.MacroExecutor.isRunning()) {
-                    autismclient.util.macro.MacroExecutor.stop();
+                if (dev.xaihi.autismclient.common.util.macro.MacroExecutor.isRunning()) {
+                    dev.xaihi.autismclient.common.util.macro.MacroExecutor.stop();
                 } else {
                     macro.execute();
                 }
@@ -725,7 +725,7 @@ public final class PackUtilModule {
     }
 
     public boolean isBindPressed(int bindCode) {
-        return autismclient.util.PackUtilBindUtil.isBindPressed(MC, bindCode);
+        return dev.xaihi.autismclient.common.util.PackUtilBindUtil.isBindPressed(MC, bindCode);
     }
 
     public void restoreSavedScreen() {

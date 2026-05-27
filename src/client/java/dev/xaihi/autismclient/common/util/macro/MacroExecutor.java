@@ -414,7 +414,7 @@ public class MacroExecutor {
         PackUtilClientMessaging.sendPrefixed("Â§aStarted macro: " + macro.name);
 
         try {
-            autismclient.util.PackUtilLANSync sync = autismclient.util.PackUtilLANSync.getInstance();
+            dev.xaihi.autismclient.common.util.PackUtilLANSync sync = dev.xaihi.autismclient.common.util.PackUtilLANSync.getInstance();
             if (sync.isInSession()) {
                 sync.broadcastStepProgress(0, macro.actions.size(), macro.name);
             }
@@ -661,7 +661,7 @@ public class MacroExecutor {
                         DisconnectAction da2 = (DisconnectAction) action;
 
                         try {
-                            autismclient.util.PackUtilLANSync sync = autismclient.util.PackUtilLANSync.getInstance();
+                            dev.xaihi.autismclient.common.util.PackUtilLANSync sync = dev.xaihi.autismclient.common.util.PackUtilLANSync.getInstance();
                             if (sync.isInSession()) {
                                 sync.broadcastStepProgress(i + 1, macro.actions.size(), macro.name);
                             }
@@ -857,7 +857,7 @@ public class MacroExecutor {
                         }
 
                         try {
-                            autismclient.util.PackUtilLANSync sync = autismclient.util.PackUtilLANSync.getInstance();
+                            dev.xaihi.autismclient.common.util.PackUtilLANSync sync = dev.xaihi.autismclient.common.util.PackUtilLANSync.getInstance();
                             if (sync.isInSession()) {
                                 sync.broadcastStepProgress(i + 1, macro.actions.size(), macro.name);
                             }
@@ -1078,9 +1078,9 @@ public class MacroExecutor {
                             });
                         }
                     }
-                    else if (action instanceof autismclient.util.macro.StoreItemAction) {
-                        autismclient.util.macro.StoreItemAction sia = (autismclient.util.macro.StoreItemAction) action;
-                        setCurrentStatus((sia.mode == autismclient.util.macro.StoreItemAction.Mode.LOOT ? "Looting" : "Storing")
+                    else if (action instanceof dev.xaihi.autismclient.common.util.macro.StoreItemAction) {
+                        dev.xaihi.autismclient.common.util.macro.StoreItemAction sia = (dev.xaihi.autismclient.common.util.macro.StoreItemAction) action;
+                        setCurrentStatus((sia.mode == dev.xaihi.autismclient.common.util.macro.StoreItemAction.Mode.LOOT ? "Looting" : "Storing")
                             + (sia.persistent ? " \u221e" : ""));
                         if (sia.persistent) {
 
@@ -1203,7 +1203,7 @@ public class MacroExecutor {
                     if (isCurrentRunActive()) {
                         markStepCompleted(i + 1);
                         try {
-                            autismclient.util.PackUtilLANSync sync = autismclient.util.PackUtilLANSync.getInstance();
+                            dev.xaihi.autismclient.common.util.PackUtilLANSync sync = dev.xaihi.autismclient.common.util.PackUtilLANSync.getInstance();
                             if (sync.isInSession()) {
                                 sync.broadcastStepProgress(i + 1, macro.actions.size(), macro.name);
                             }
@@ -1276,7 +1276,7 @@ public class MacroExecutor {
             if (!isRunning.get()) MacroConditionRegistry.cancelAll();
 
             try {
-                autismclient.util.PackUtilLANSync sync = autismclient.util.PackUtilLANSync.getInstance();
+                dev.xaihi.autismclient.common.util.PackUtilLANSync sync = dev.xaihi.autismclient.common.util.PackUtilLANSync.getInstance();
                 if (sync.isInSession()) {
                     sync.broadcastStepProgress(-1, 0, "");
                 }
@@ -1799,9 +1799,9 @@ public class MacroExecutor {
             }
         } else if (action instanceof CraftAction) {
             runCraftAction(mc, (CraftAction) action);
-        } else if (action instanceof autismclient.util.macro.StoreItemAction) {
-            autismclient.util.macro.StoreItemAction sia = (autismclient.util.macro.StoreItemAction) action;
-            setCurrentStatus((sia.mode == autismclient.util.macro.StoreItemAction.Mode.LOOT ? "Looting" : "Storing")
+        } else if (action instanceof dev.xaihi.autismclient.common.util.macro.StoreItemAction) {
+            dev.xaihi.autismclient.common.util.macro.StoreItemAction sia = (dev.xaihi.autismclient.common.util.macro.StoreItemAction) action;
+            setCurrentStatus((sia.mode == dev.xaihi.autismclient.common.util.macro.StoreItemAction.Mode.LOOT ? "Looting" : "Storing")
                 + (sia.persistent ? " \u221e" : ""));
             if (sia.persistent) {
                 while (isCurrentRunActive()) {
@@ -1968,7 +1968,7 @@ public class MacroExecutor {
         if (mc == null || mc.player == null || mc.gameMode == null) return;
 
         AtomicReference<net.minecraft.world.inventory.AbstractContainerMenu> containerHandlerRef = new AtomicReference<>();
-        AtomicReference<autismclient.util.PackUtilContainerTarget> containerTargetRef = new AtomicReference<>();
+        AtomicReference<dev.xaihi.autismclient.common.util.PackUtilContainerTarget> containerTargetRef = new AtomicReference<>();
         AtomicReference<List<Integer>> containerSlotIdsRef = new AtomicReference<>(List.of());
         AtomicBoolean usingContainer = new AtomicBoolean(false);
 
@@ -1978,7 +1978,7 @@ public class MacroExecutor {
             if (current != null && current != mc.player.inventoryMenu) {
                 usingContainer.set(true);
                 containerHandlerRef.set(current);
-                containerTargetRef.set(autismclient.util.PackUtilSharedState.get().getLastContainerTarget());
+                containerTargetRef.set(dev.xaihi.autismclient.common.util.PackUtilSharedState.get().getLastContainerTarget());
                 containerSlotIdsRef.set(new ArrayList<>(xsa.collectContainerTransferSlots(current)));
             }
         });
@@ -2082,8 +2082,8 @@ public class MacroExecutor {
         runOnClientThread(mc, () -> {
             if (mc.player != null) {
                 boolean active = XCarryAction.hasStoredItems(mc.player.inventoryMenu, xsa.carryCursor);
-                autismclient.util.PackUtilSharedState.get().setXCarryForced(active);
-                autismclient.util.PackUtilSharedState.get().setXCarryActive(active);
+                dev.xaihi.autismclient.common.util.PackUtilSharedState.get().setXCarryForced(active);
+                dev.xaihi.autismclient.common.util.PackUtilSharedState.get().setXCarryActive(active);
             }
         });
 
@@ -2094,7 +2094,7 @@ public class MacroExecutor {
                 if (containerHandler != null) {
                     mc.player.containerMenu = containerHandler;
                 }
-                autismclient.util.PackUtilContainerTarget containerTarget = containerTargetRef.get();
+                dev.xaihi.autismclient.common.util.PackUtilContainerTarget containerTarget = containerTargetRef.get();
                 if (containerTarget != null) {
                     XCarryAction.sendOpenTarget(mc, containerTarget);
                 }
@@ -2294,7 +2294,7 @@ public class MacroExecutor {
 
     public static boolean handlerSlotMatchesItem(Minecraft mc, int slotId, ItemTarget target) {
         if (mc.player == null || mc.player.containerMenu == null) return false;
-        int handlerSlot = autismclient.util.PackUtilInventoryHelper.resolveConfiguredHandlerSlot(mc, slotId);
+        int handlerSlot = dev.xaihi.autismclient.common.util.PackUtilInventoryHelper.resolveConfiguredHandlerSlot(mc, slotId);
         if (handlerSlot < 0 || handlerSlot >= mc.player.containerMenu.slots.size()) return false;
         var slot = mc.player.containerMenu.slots.get(handlerSlot);
         if (slot == null || slot.getItem().isEmpty()) return false;
@@ -2305,7 +2305,7 @@ public class MacroExecutor {
 
     public static boolean handlerSlotHasAnyItem(Minecraft mc, int slotId) {
         if (mc.player == null || mc.player.containerMenu == null) return false;
-        int handlerSlot = autismclient.util.PackUtilInventoryHelper.resolveConfiguredHandlerSlot(mc, slotId);
+        int handlerSlot = dev.xaihi.autismclient.common.util.PackUtilInventoryHelper.resolveConfiguredHandlerSlot(mc, slotId);
         if (handlerSlot < 0 || handlerSlot >= mc.player.containerMenu.slots.size()) return false;
         var slot = mc.player.containerMenu.slots.get(handlerSlot);
         return slot != null && !slot.getItem().isEmpty();
@@ -2720,7 +2720,7 @@ public class MacroExecutor {
         PackUtilInstaBreakRenderer.clear();
 
         try {
-            autismclient.util.PackUtilLANSync sync = autismclient.util.PackUtilLANSync.getInstance();
+            dev.xaihi.autismclient.common.util.PackUtilLANSync sync = dev.xaihi.autismclient.common.util.PackUtilLANSync.getInstance();
             if (sync.isInSession()) {
                 sync.broadcastStepProgress(-1, 0, "");
             }
@@ -3656,7 +3656,7 @@ public class MacroExecutor {
             return;
         }
 
-        java.util.List<autismclient.util.PackUtilSharedState.QueuedPacket> allQueuedPackets = new java.util.ArrayList<>();
+        java.util.List<dev.xaihi.autismclient.common.util.PackUtilSharedState.QueuedPacket> allQueuedPackets = new java.util.ArrayList<>();
         for (SendPacketAction action : batch) {
             allQueuedPackets.addAll(action.getPackets());
         }
@@ -3666,7 +3666,7 @@ public class MacroExecutor {
         }
 
         java.util.List<Packet<?>> regeneratedPackets = new java.util.ArrayList<>(allQueuedPackets.size());
-        for (autismclient.util.PackUtilSharedState.QueuedPacket qp : allQueuedPackets) {
+        for (dev.xaihi.autismclient.common.util.PackUtilSharedState.QueuedPacket qp : allQueuedPackets) {
             if (qp.packet == null) continue;
             regeneratedPackets.add(qp.packet);
         }
@@ -3713,7 +3713,7 @@ public class MacroExecutor {
             if (!(act instanceof SendPacketAction)) break;
 
             SendPacketAction spa = (SendPacketAction) act;
-            for (autismclient.util.PackUtilSharedState.QueuedPacket qp : spa.getPackets()) {
+            for (dev.xaihi.autismclient.common.util.PackUtilSharedState.QueuedPacket qp : spa.getPackets()) {
                 if (qp.packet == null) continue;
 
                 result.add(qp.packet);

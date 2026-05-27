@@ -102,19 +102,19 @@ public final class PackUtilText {
     }
 
     public static int width(Font renderer, String value, Tone tone) {
-        return autismclient.gui.packui.PackUiText.width(renderer, value, fontIdFor(tone), colorFor(tone));
+        return dev.xaihi.autismclient.common.gui.packui.PackUiText.width(renderer, value, fontIdFor(tone), colorFor(tone));
     }
 
     public static String trimToWidth(Font renderer, String value, int maxWidth, Tone tone) {
-        return autismclient.gui.packui.PackUiText.trimToWidth(renderer, value, maxWidth, fontIdFor(tone), colorFor(tone));
+        return dev.xaihi.autismclient.common.gui.packui.PackUiText.trimToWidth(renderer, value, maxWidth, fontIdFor(tone), colorFor(tone));
     }
 
     public static void draw(GuiGraphicsExtractor context, Font renderer, String value, Tone tone, int x, int y, boolean shadow) {
-        autismclient.gui.packui.PackUiText.draw(context, renderer, value, fontIdFor(tone), colorFor(tone), x, y, shadow);
+        dev.xaihi.autismclient.common.gui.packui.PackUiText.draw(context, renderer, value, fontIdFor(tone), colorFor(tone), x, y, shadow);
     }
 
     public static void draw(GuiGraphicsExtractor context, Font renderer, String value, int color, int x, int y, boolean shadow) {
-        autismclient.gui.packui.PackUiText.draw(context, renderer, value, PackUiAssets.FONT_BODY, color, x, y, shadow);
+        dev.xaihi.autismclient.common.gui.packui.PackUiText.draw(context, renderer, value, PackUiAssets.FONT_BODY, color, x, y, shadow);
     }
 
     public static Identifier fontIdFor(Tone tone) {

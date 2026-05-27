@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.common.util;
 
-import dev.xaihi.autismclient.common.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import dev.xaihi.autismclient.common.mixin.accessor.PackUtilMinecraftAccessor;
 import com.mojang.authlib.minecraft.UserApiService;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;

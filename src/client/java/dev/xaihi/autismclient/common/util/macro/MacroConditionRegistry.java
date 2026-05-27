@@ -1054,7 +1054,7 @@ public class MacroConditionRegistry {
         }
 
         boolean checkNow() {
-            autismclient.util.PackUtilLANSync sync = autismclient.util.PackUtilLANSync.getInstance();
+            dev.xaihi.autismclient.common.util.PackUtilLANSync sync = dev.xaihi.autismclient.common.util.PackUtilLANSync.getInstance();
             if (!sync.isInSession()) return true;
 
             String myUsername = sync.getMyUsername();

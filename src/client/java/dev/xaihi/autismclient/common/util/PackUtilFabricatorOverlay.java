@@ -1479,11 +1479,11 @@ public class PackUtilFabricatorOverlay extends PackUtilOverlayBase {
             }
 
             if (currentAction == FabricatorAction.DROP) {
-                autismclient.util.macro.DropAction dropAction = new autismclient.util.macro.DropAction();
+                dev.xaihi.autismclient.common.util.macro.DropAction dropAction = new dev.xaihi.autismclient.common.util.macro.DropAction();
                 dropAction.useHandlerSlots = true;
                 dropAction.mode = dropWholeStack
-                    ? autismclient.util.macro.DropAction.DropMode.ALL
-                    : autismclient.util.macro.DropAction.DropMode.TIMES;
+                    ? dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.ALL
+                    : dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.TIMES;
                 dropAction.dropCount = dropWholeStack ? 0 : repeats;
                 String entry = enteredSlot != null
                     ? ("#" + enteredSlot + (!itemName.isEmpty() ? "|" + itemName : ""))
@@ -1500,7 +1500,7 @@ public class PackUtilFabricatorOverlay extends PackUtilOverlayBase {
                 return;
             }
 
-            autismclient.util.macro.ItemAction itemAction = new autismclient.util.macro.ItemAction();
+            dev.xaihi.autismclient.common.util.macro.ItemAction itemAction = new dev.xaihi.autismclient.common.util.macro.ItemAction();
             itemAction.actionIndex = currentAction.toPacketAction(dropWholeStack).ordinal();
             itemAction.button = getEffectiveButton();
             itemAction.times = repeats;
@@ -1745,7 +1745,7 @@ public class PackUtilFabricatorOverlay extends PackUtilOverlayBase {
 
     public AbstractContainerMenu getActiveHandler() {
         if (MC.player != null && MC.player.containerMenu != null) return MC.player.containerMenu;
-        return parentScreen != null ? ((autismclient.mixin.accessor.AbstractContainerScreenAccessor) parentScreen).packutil$getMenu() : null;
+        return parentScreen != null ? ((dev.xaihi.autismclient.mixin.accessor.AbstractContainerScreenAccessor) parentScreen).packutil$getMenu() : null;
     }
 
     public Integer parseEnteredSlot() {

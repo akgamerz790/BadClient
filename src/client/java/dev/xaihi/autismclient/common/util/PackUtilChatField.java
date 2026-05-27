@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.common.util;
 
-import dev.xaihi.autismclient.common.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import dev.xaihi.autismclient.common.gui.packui.PackUiRenderContext;
 import dev.xaihi.autismclient.common.gui.packui.PackUiTextField;
 import dev.xaihi.autismclient.common.gui.packui.PackUiTheme;

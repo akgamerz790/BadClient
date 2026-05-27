@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.common.util;
 
-import dev.xaihi.autismclient.common.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

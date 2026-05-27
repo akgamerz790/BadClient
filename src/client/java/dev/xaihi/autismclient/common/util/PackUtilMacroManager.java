@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.common.util;
 
-import dev.xaihi.autismclient.common.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.nbt.ListTag;
@@ -67,8 +67,8 @@ public class PackUtilMacroManager {
     }
 
     public synchronized void remove(PackUtilMacro macro) {
-        if (autismclient.util.macro.MacroExecutor.isMacroRunning(macro.name)) {
-            autismclient.util.macro.MacroExecutor.stopMacro(macro.name);
+        if (dev.xaihi.autismclient.common.util.macro.MacroExecutor.isMacroRunning(macro.name)) {
+            dev.xaihi.autismclient.common.util.macro.MacroExecutor.stopMacro(macro.name);
             PackUtilClientMessaging.sendPrefixed("Ãƒâ€šÃ‚Â§eStopped running macro before deletion: " + macro.name);
         }
 
@@ -102,8 +102,8 @@ public class PackUtilMacroManager {
     }
 
     public void stopMacro() {
-        if (autismclient.util.macro.MacroExecutor.isRunning()) {
-            autismclient.util.macro.MacroExecutor.stop();
+        if (dev.xaihi.autismclient.common.util.macro.MacroExecutor.isRunning()) {
+            dev.xaihi.autismclient.common.util.macro.MacroExecutor.stop();
         } else {
             PackUtilClientMessaging.sendPrefixed("ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§eNo macro is currently running.");
         }

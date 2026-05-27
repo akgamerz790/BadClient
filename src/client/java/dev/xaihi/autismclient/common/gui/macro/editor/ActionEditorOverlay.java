@@ -183,7 +183,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
     public int scrollOffset = 0;
 
-    public autismclient.util.macro.ItemAction itemAction;
+    public dev.xaihi.autismclient.common.util.macro.ItemAction itemAction;
 
     public String itemSlotCapturePendingKey;
 
@@ -199,7 +199,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     public String   craftLastQuery;
     public int[]    craftRecipeListBounds;
 
-    public autismclient.util.macro.DropAction dropAction;
+    public dev.xaihi.autismclient.common.util.macro.DropAction dropAction;
 
     public PayloadAction payloadAction;
     public boolean standalonePayloadEditor = false;
@@ -240,11 +240,11 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         BINARY_REPLAY
     }
 
-    public List<autismclient.util.macro.WaitForLanStepAction.LanStepEntry> lanStepEntries;
+    public List<dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction.LanStepEntry> lanStepEntries;
     public final List<String> payScannedPlayers = new ArrayList<>();
     public boolean payPlayerScanPerformed = false;
     public final List<String> meteorModuleNames = new ArrayList<>();
-    public List<autismclient.util.macro.ToggleModuleAction.ModuleEntry> toggleModuleEntries;
+    public List<dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry> toggleModuleEntries;
 
     public Runnable onPreSave;
 
@@ -476,8 +476,8 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         itemSlotCapturePendingKey = null;
         itemEditIndex = -1;
         dropEditIndex = -1;
-        if (action instanceof autismclient.util.macro.ItemAction ia) {
-            itemAction = new autismclient.util.macro.ItemAction();
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.ItemAction ia) {
+            itemAction = new dev.xaihi.autismclient.common.util.macro.ItemAction();
             itemAction.itemNames     = new ArrayList<>(ia.itemNames);
             itemAction.itemTargets   = copyEditorTargets(ia.itemTargets, ia.itemNames);
             itemAction.itemTimes     = new ArrayList<>(ia.itemTimes);
@@ -581,8 +581,8 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         }
 
         dropAction = null;
-        if (action instanceof autismclient.util.macro.DropAction da) {
-            dropAction = new autismclient.util.macro.DropAction();
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.DropAction da) {
+            dropAction = new dev.xaihi.autismclient.common.util.macro.DropAction();
             dropAction.mode            = da.mode;
             dropAction.dropCount       = da.dropCount;
             dropAction.itemNames       = new ArrayList<>(da.itemNames);
@@ -620,8 +620,8 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
             toggleStates.put("drop_waitForGui",      da.waitForGui);
             toggleStates.put("drop_useHandlerSlots", da.useHandlerSlots);
-            autismclient.util.macro.DropAction.DropMode[] modes =
-                    autismclient.util.macro.DropAction.DropMode.values();
+            dev.xaihi.autismclient.common.util.macro.DropAction.DropMode[] modes =
+                    dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.values();
             int mi = 0;
             for (int i = 0; i < modes.length; i++) if (modes[i] == da.mode) { mi = i; break; }
             enumIndices.put("drop_mode", mi);
@@ -636,13 +636,13 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         }
 
         lanStepEntries = null;
-        if (action instanceof autismclient.util.macro.WaitForLanStepAction wls) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction wls) {
             lanStepEntries = new ArrayList<>();
-            for (autismclient.util.macro.WaitForLanStepAction.LanStepEntry e : wls.entries)
-                lanStepEntries.add(new autismclient.util.macro.WaitForLanStepAction.LanStepEntry(e.username, e.step));
+            for (dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction.LanStepEntry e : wls.entries)
+                lanStepEntries.add(new dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction.LanStepEntry(e.username, e.step));
 
             for (int i = 0; i < lanStepEntries.size(); i++) {
-                autismclient.util.macro.WaitForLanStepAction.LanStepEntry e = lanStepEntries.get(i);
+                dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction.LanStepEntry e = lanStepEntries.get(i);
                 PackUtilChatField uf = makeField(80); uf.setText(e.username);
                 textFields.put("lan_user_" + i, uf);
                 PackUtilChatField sf = makeField(40); sf.setNumericOnly(true);
@@ -665,48 +665,48 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         }
 
         entitySpecificCaptureMode = false;
-        if (action instanceof autismclient.util.macro.WaitForSoundAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.WaitForSoundAction) {
             PackUtilChatField search = addFields.get("soundIds");
             if (search != null) search.setPlaceholder(Component.literal("Search sound id..."));
         }
-        if (action instanceof autismclient.util.macro.WaitForEntityAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.WaitForEntityAction) {
             PackUtilChatField search = addFields.get("entityIds");
             if (search != null) search.setPlaceholder(Component.literal("Search entity type..."));
         }
-        if (action instanceof autismclient.util.macro.LookAtBlockAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.LookAtBlockAction) {
             PackUtilChatField search = addFields.get("entityIds");
             if (search != null) search.setPlaceholder(Component.literal("Search entity type..."));
         }
-        if (action instanceof autismclient.util.macro.StoreItemAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.StoreItemAction) {
             PackUtilChatField search = addFields.get("targetItems");
             if (search != null) search.setPlaceholder(Component.literal("Search item id..."));
         }
-        if (action instanceof autismclient.util.macro.InventoryAuditAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.InventoryAuditAction) {
             PackUtilChatField search = addFields.get("targetItems");
             if (search != null) search.setPlaceholder(Component.literal("Item name"));
         }
         payScannedPlayers.clear();
         payPlayerScanPerformed = false;
-        if (action instanceof autismclient.util.macro.PayAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.PayAction) {
             PackUtilChatField search = addFields.get("players");
             if (search != null) search.setPlaceholder(Component.literal("Search or add player..."));
         }
         meteorModuleNames.clear();
         toggleModuleEntries = null;
-        if (action instanceof autismclient.util.macro.ToggleModuleAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.ToggleModuleAction) {
             PackUtilChatField search = makeField(180);
             search.setPlaceholder(Component.literal("Search Meteor module..."));
             addFields.put("_toggle_module_search", search);
             refreshMeteorModuleNames();
-            autismclient.util.macro.ToggleModuleAction toggleModuleAction = (autismclient.util.macro.ToggleModuleAction) action;
+            dev.xaihi.autismclient.common.util.macro.ToggleModuleAction toggleModuleAction = (dev.xaihi.autismclient.common.util.macro.ToggleModuleAction) action;
             toggleModuleEntries = new ArrayList<>();
-            for (autismclient.util.macro.ToggleModuleAction.ModuleEntry entry : toggleModuleAction.entries) {
+            for (dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry entry : toggleModuleAction.entries) {
                 if (entry != null && entry.moduleName != null && !entry.moduleName.isBlank()) {
-                    toggleModuleEntries.add(new autismclient.util.macro.ToggleModuleAction.ModuleEntry(entry.moduleName, entry.toggleMode));
+                    toggleModuleEntries.add(new dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry(entry.moduleName, entry.toggleMode));
                 }
             }
         }
-        if (action instanceof autismclient.util.macro.WaitForChatAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.WaitForChatAction) {
             PackUtilChatField search = makeField(180);
             search.setPlaceholder(Component.literal("Search recent chat..."));
             addFields.put("_wait_chat_search", search);
@@ -720,7 +720,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 String visiblePattern = initialPattern.getString();
                 workingTag.putString("pattern", visiblePattern);
                 workingTag.putString("patternJson",
-                        autismclient.util.macro.MacroExecutor.serializeTextComponent(initialPattern));
+                        dev.xaihi.autismclient.common.util.macro.MacroExecutor.serializeTextComponent(initialPattern));
                 patternField.setDisplayTextProvider(this::getWaitChatPatternComponent);
                 suppressWaitChatPatternSync = true;
                 patternField.setText(visiblePattern);
@@ -732,7 +732,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                     Component updatedPattern = rebuildWaitChatPatternComponent(currentPattern, visibleValue);
                     workingTag.putString("pattern", visibleValue);
                     workingTag.putString("patternJson",
-                            autismclient.util.macro.MacroExecutor.serializeTextComponent(updatedPattern));
+                            dev.xaihi.autismclient.common.util.macro.MacroExecutor.serializeTextComponent(updatedPattern));
                 });
             }
         } else {
@@ -741,19 +741,19 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             clearWaitChatFuzzySliderBounds();
         }
 
-        if (action instanceof autismclient.util.macro.RotateAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.RotateAction) {
             rotateSmoothnessSliderDragging = false;
             clearRotateSmoothnessSliderBounds();
-            autismclient.util.macro.RotateAction rotateAction = (autismclient.util.macro.RotateAction) action;
+            dev.xaihi.autismclient.common.util.macro.RotateAction rotateAction = (dev.xaihi.autismclient.common.util.macro.RotateAction) action;
             PackUtilChatField smoothnessField = textFields.get("smoothness");
-            int smoothness = autismclient.util.macro.RotateAction.clampSmoothness(rotateAction.smoothness);
+            int smoothness = dev.xaihi.autismclient.common.util.macro.RotateAction.clampSmoothness(rotateAction.smoothness);
             workingTag.putInt("smoothness", smoothness);
             if (smoothnessField != null) smoothnessField.setText(String.valueOf(smoothness));
-        } else if (action instanceof autismclient.util.macro.LookAtBlockAction lookAtAction) {
+        } else if (action instanceof dev.xaihi.autismclient.common.util.macro.LookAtBlockAction lookAtAction) {
             rotateSmoothnessSliderDragging = false;
             clearRotateSmoothnessSliderBounds();
             PackUtilChatField smoothnessField = textFields.get("smoothness");
-            int smoothness = autismclient.util.macro.RotateAction.clampSmoothness(lookAtAction.smoothness);
+            int smoothness = dev.xaihi.autismclient.common.util.macro.RotateAction.clampSmoothness(lookAtAction.smoothness);
             workingTag.putInt("smoothness", smoothness);
             if (smoothnessField != null) smoothnessField.setText(String.valueOf(smoothness));
         } else {
@@ -881,7 +881,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
     public String getAbstractContainerScreenCaptureHoverText(net.minecraft.world.inventory.Slot slot, String itemName, String registryId) {
         if (slot == null) return "";
-        int visibleSlot = autismclient.util.PackUtilInventoryHelper.toUserVisibleSlot(MC, slot.index);
+        int visibleSlot = dev.xaihi.autismclient.common.util.PackUtilInventoryHelper.toUserVisibleSlot(MC, slot.index);
         String slotText = visibleSlot >= 0 ? String.valueOf(visibleSlot) : "Handler " + slot.index;
         String slotDetail = "Handler " + slot.index;
         String itemText = !registryId.isEmpty() ? registryId : (!itemName.isEmpty() ? itemName : "Empty slot");
@@ -914,7 +914,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     public boolean onInventorySlotCapture(net.minecraft.world.inventory.Slot slot,
                                           String itemName, String registryId) {
         int visibleSlot = slot != null
-                ? autismclient.util.PackUtilInventoryHelper.toUserVisibleSlot(MC, slot.index)
+                ? dev.xaihi.autismclient.common.util.PackUtilInventoryHelper.toUserVisibleSlot(MC, slot.index)
                 : -1;
         ItemTarget capturedTarget = captureItemTarget(slot, itemName, registryId, visibleSlot);
         if (itemSlotCapturePendingKey == null || (itemName.isEmpty() && visibleSlot < 0)) return false;
@@ -940,12 +940,12 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 showCaptureToast("Nothing to add from that slot", CAPTURE_TOAST_ERROR);
                 return true;
             }
-            String norm = autismclient.util.macro.StoreItemAction.normalizeTargetEntry(rawTarget);
+            String norm = dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(rawTarget);
             if (norm == null || norm.isBlank()) {
                 showCaptureToast("Nothing to add from that slot", CAPTURE_TOAST_ERROR);
                 return true;
             }
-            String disp = autismclient.util.macro.StoreItemAction.formatTargetEntry(norm);
+            String disp = dev.xaihi.autismclient.common.util.macro.StoreItemAction.formatTargetEntry(norm);
             if (wscEditIndex >= 0 && wscEditIndex < wscEntries.size()) {
 
                 if (!wscTargetExistsOtherThan(norm, wscEditIndex)) {
@@ -1285,7 +1285,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
         itemViewport.renderScrollbar(ctx, mx, my);
 
-        autismclient.util.PackUtilDropAction[] ACTIONS = autismclient.util.PackUtilDropAction.values();
+        dev.xaihi.autismclient.common.util.PackUtilDropAction[] ACTIONS = dev.xaihi.autismclient.common.util.PackUtilDropAction.values();
         int sbGap   = SCROLLBAR_W + 2;
         int delW    = 13;
         int itemW   = w - sbGap - delW - 2;
@@ -1299,7 +1299,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 if (iy == Integer.MIN_VALUE) continue;
                 String entry      = itemAction.itemNames.get(i);
                 int eiActIdx      = itemAction.getItemActionIdx(i);
-                autismclient.util.PackUtilDropAction eiAct = ACTIONS[eiActIdx];
+                dev.xaihi.autismclient.common.util.PackUtilDropAction eiAct = ACTIONS[eiActIdx];
                 int eiBtn         = itemAction.getItemButton(i);
                 boolean selected  = i == itemEditIndex;
 
@@ -1308,7 +1308,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 boolean rowHovered = mx >= x && mx < x + itemW && my >= iy && my < iy + 13;
 
                 String summaryAct = eiAct.shortName;
-                String summaryBtn = eiAct == autismclient.util.PackUtilDropAction.SWAP
+                String summaryBtn = eiAct == dev.xaihi.autismclient.common.util.PackUtilDropAction.SWAP
                         ? "H" + Math.max(1, Math.min(9, eiBtn + 1))
                         : switch (eiBtn) { case 1 -> "R"; case 2 -> "M"; default -> "L"; };
                 int times = itemAction.getItemTime(i);
@@ -1409,10 +1409,10 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
         if (itemEditIndex >= 0 && itemEditIndex < itemAction.itemNames.size()) {
             int eiActIdx = itemAction.getItemActionIdx(itemEditIndex);
-            autismclient.util.PackUtilDropAction eiAct = ACTIONS[eiActIdx];
+            dev.xaihi.autismclient.common.util.PackUtilDropAction eiAct = ACTIONS[eiActIdx];
             int eiBtn = itemAction.getItemButton(itemEditIndex);
-            boolean btnActive = eiAct == autismclient.util.PackUtilDropAction.PICKUP
-                    || eiAct == autismclient.util.PackUtilDropAction.SWAP;
+            boolean btnActive = eiAct == dev.xaihi.autismclient.common.util.PackUtilDropAction.PICKUP
+                    || eiAct == dev.xaihi.autismclient.common.util.PackUtilDropAction.SWAP;
             final int editIdx = itemEditIndex;
 
             int editActW = 54;
@@ -1420,11 +1420,11 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             int editTimesW = 28;
             int editGap = 3;
             renderOverlayButton(ctx, x, cy, editActW, 14, eiAct.shortName, PackUiOverlayButton.Variant.SECONDARY, true, mx, my, () -> itemAction.cycleItemAction(editIdx));
-            String btnLbl = eiAct == autismclient.util.PackUtilDropAction.SWAP
+            String btnLbl = eiAct == dev.xaihi.autismclient.common.util.PackUtilDropAction.SWAP
                     ? "H" + Math.max(1, Math.min(9, eiBtn + 1))
                     : switch (eiBtn) { case 1 -> "R"; case 2 -> "M"; default -> "L"; };
             renderOverlayButton(ctx, x + editActW + editGap, cy, editBtnW, 14, btnLbl,
-                    eiAct == autismclient.util.PackUtilDropAction.SWAP ? PackUiOverlayButton.Variant.PRIMARY : PackUiOverlayButton.Variant.GHOST,
+                    eiAct == dev.xaihi.autismclient.common.util.PackUtilDropAction.SWAP ? PackUiOverlayButton.Variant.PRIMARY : PackUiOverlayButton.Variant.GHOST,
                     btnActive, mx, my, () -> itemAction.cycleItemButton(editIdx));
             PackUtilChatField tf = textFields.get("item_times_" + itemEditIndex);
             if (tf != null) { tf.setX(x + editActW + editGap + editBtnW + editGap); tf.setY(cy + 1); tf.setWidth(editTimesW); tf.render(ctx, mx, my, delta); }
@@ -1433,7 +1433,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
         String itemHint = "Blank name + slot = exact slot. Name + slot = that item in that slot.";
         if (itemEditIndex >= 0 && itemEditIndex < itemAction.itemNames.size()
-                && itemAction.getItemAction(itemEditIndex) == autismclient.util.PackUtilDropAction.SWAP) {
+                && itemAction.getItemAction(itemEditIndex) == dev.xaihi.autismclient.common.util.PackUtilDropAction.SWAP) {
             itemHint = "Swap uses the blue H1-H9 button to pick which hotbar slot gets swapped.";
         }
         cy = renderEditorHint(ctx, x, cy, w, itemHint);
@@ -2006,7 +2006,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         {
             boolean dropAllSelected = editingSelectedDrop
                     ? getDropEntryCount(dropEditIndex) == 0
-                    : dropAction.mode == autismclient.util.macro.DropAction.DropMode.ALL;
+                    : dropAction.mode == dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.ALL;
             int lw = labelWidth(w, editingSelectedDrop ? "Selected Row" : "Default Mode", font);
             drawLabel(ctx, editingSelectedDrop ? "Selected Row" : "Default Mode", x, cy, lw, font);
             int ctrlX = controlX(x, lw);
@@ -2021,7 +2021,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                     setDropEntryCount(dropEditIndex, 0);
                 } else {
                     enumIndices.put("drop_mode", 0);
-                    dropAction.mode = autismclient.util.macro.DropAction.DropMode.ALL;
+                    dropAction.mode = dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.ALL;
                 }
                 syncDropCountEditorField();
             });
@@ -2032,7 +2032,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                     setDropEntryCount(dropEditIndex, Math.max(1, getDropEntryCount(dropEditIndex)));
                 } else {
                     enumIndices.put("drop_mode", 1);
-                    dropAction.mode = autismclient.util.macro.DropAction.DropMode.TIMES;
+                    dropAction.mode = dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.TIMES;
                 }
                 syncDropCountEditorField();
             });
@@ -2247,7 +2247,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         boolean editingSelectedDrop = dropEditIndex >= 0 && dropEditIndex < dropAction.itemNames.size();
         boolean dropAll = editingSelectedDrop
                 ? getDropEntryCount(dropEditIndex) == 0
-                : dropAction.mode == autismclient.util.macro.DropAction.DropMode.ALL;
+                : dropAction.mode == dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.ALL;
         int displayCount = editingSelectedDrop
                 ? Math.max(1, getDropEntryCount(dropEditIndex))
                 : Math.max(1, dropAction.dropCount);
@@ -2266,7 +2266,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         boolean editingSelectedDrop = dropEditIndex >= 0 && dropEditIndex < dropAction.itemNames.size();
         boolean dropAll = editingSelectedDrop
                 ? getDropEntryCount(dropEditIndex) == 0
-                : dropAction.mode == autismclient.util.macro.DropAction.DropMode.ALL;
+                : dropAction.mode == dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.ALL;
         if (dropAll) return;
 
         try {
@@ -2386,7 +2386,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 String uname = newUF.getText().strip();
                 int step = 1;
                 try { step = Math.max(1, Integer.parseInt(newSF.getText().strip())); } catch (NumberFormatException ignored) {}
-                lanStepEntries.add(new autismclient.util.macro.WaitForLanStepAction.LanStepEntry(uname, step));
+                lanStepEntries.add(new dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction.LanStepEntry(uname, step));
                 int idx = lanStepEntries.size() - 1;
                 PackUtilChatField uf2 = makeField(80); uf2.setText(uname);
                 textFields.put("lan_user_" + idx, uf2);
@@ -2400,7 +2400,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     public void rebuildLanStepFields() {
         textFields.keySet().removeIf(k -> k.startsWith("lan_user_") || k.startsWith("lan_step_"));
         for (int i = 0; i < lanStepEntries.size(); i++) {
-            autismclient.util.macro.WaitForLanStepAction.LanStepEntry e = lanStepEntries.get(i);
+            dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction.LanStepEntry e = lanStepEntries.get(i);
             PackUtilChatField uf = makeField(80); uf.setText(e.username);
             textFields.put("lan_user_" + i, uf);
             PackUtilChatField sf = makeField(40); sf.setNumericOnly(true); sf.setText(String.valueOf(e.step));
@@ -3424,13 +3424,13 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         int halfW = (w - 4) / 2;
         int x2 = x + halfW + 4;
         renderOverlayButton(ctx, x, y + 2, halfW, btnH, "Default", PackUiOverlayButton.Variant.SECONDARY, true, mx, my, () -> {
-            autismclient.util.macro.DelayPacketsAction tmp = new autismclient.util.macro.DelayPacketsAction();
+            dev.xaihi.autismclient.common.util.macro.DelayPacketsAction tmp = new dev.xaihi.autismclient.common.util.macro.DelayPacketsAction();
             tmp.applyDefaultPreset();
             stringLists.put("c2sPackets", new ArrayList<>(tmp.c2sPacketNames));
             stringLists.put("s2cPackets", new ArrayList<>(tmp.s2cPacketNames));
         });
         renderOverlayButton(ctx, x2, y + 2, halfW, btnH, "Module", PackUiOverlayButton.Variant.PRIMARY, true, mx, my, () -> {
-            autismclient.util.macro.DelayPacketsAction tmp = new autismclient.util.macro.DelayPacketsAction();
+            dev.xaihi.autismclient.common.util.macro.DelayPacketsAction tmp = new dev.xaihi.autismclient.common.util.macro.DelayPacketsAction();
             tmp.applyModulePreset();
             stringLists.put("c2sPackets", new ArrayList<>(tmp.c2sPacketNames));
             stringLists.put("s2cPackets", new ArrayList<>(tmp.s2cPacketNames));
@@ -4010,7 +4010,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             if (!entry.isEmpty()) {
                 String normalized = isXCarryListKey(key) ? normalizeXCarryEntry(entry)
                         : usesStoreTargetFormatting(key)
-                            ? autismclient.util.macro.StoreItemAction.normalizeTargetEntry(entry) : entry;
+                            ? dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(entry) : entry;
                 if (normalized != null && !normalized.isBlank() && !normalized.equals(lst.get(editIdx))) {
                     lst.set(editIdx, normalized);
                     if (usesMinecraftTextRendering(key)) {
@@ -4575,7 +4575,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             while (dropAction.itemCounts.size() < dropAction.itemNames.size()) dropAction.itemCounts.add(1);
             PackUtilChatField cntF = textFields.get("drop_globalCount");
             if (cntF != null) { try { dropAction.dropCount = Math.max(1, Integer.parseInt(cntF.getText().strip())); } catch (NumberFormatException ignored) {} }
-            autismclient.util.macro.DropAction.DropMode[] modes = autismclient.util.macro.DropAction.DropMode.values();
+            dev.xaihi.autismclient.common.util.macro.DropAction.DropMode[] modes = dev.xaihi.autismclient.common.util.macro.DropAction.DropMode.values();
             dropAction.mode = modes[Math.min(enumIndices.getOrDefault("drop_mode", 0), modes.length - 1)];
             dropAction.waitForGui      = toggleStates.getOrDefault("drop_waitForGui", false);
             dropAction.useHandlerSlots = true;
@@ -4593,14 +4593,14 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
         if (lanStepEntries != null) {
             for (int i = 0; i < lanStepEntries.size(); i++) {
-                autismclient.util.macro.WaitForLanStepAction.LanStepEntry e = lanStepEntries.get(i);
+                dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction.LanStepEntry e = lanStepEntries.get(i);
                 PackUtilChatField uf = textFields.get("lan_user_" + i);
                 if (uf != null) e.username = uf.getText();
                 PackUtilChatField sf = textFields.get("lan_step_" + i);
                 if (sf != null) { try { e.step = Math.max(1, Integer.parseInt(sf.getText().strip())); } catch (NumberFormatException ignored) {} }
             }
             ListTag entryList = new ListTag();
-            for (autismclient.util.macro.WaitForLanStepAction.LanStepEntry e : lanStepEntries)
+            for (dev.xaihi.autismclient.common.util.macro.WaitForLanStepAction.LanStepEntry e : lanStepEntries)
                 entryList.add(e.toTag());
             workingTag.put("entries", entryList);
             workingTag.putBoolean("filterByUser", toggleStates.getOrDefault("lan_filterByUser", false));
@@ -4611,14 +4611,14 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
         if (toggleModuleEntries != null) {
             ListTag entriesTag = new ListTag();
-            for (autismclient.util.macro.ToggleModuleAction.ModuleEntry entry : toggleModuleEntries) {
+            for (dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry entry : toggleModuleEntries) {
                 if (entry != null && entry.moduleName != null && !entry.moduleName.isBlank()) {
                     entriesTag.add(entry.toTag());
                 }
             }
             workingTag.put("entries", entriesTag);
             workingTag.putString("moduleName", "");
-            workingTag.putString("toggleMode", autismclient.util.macro.ToggleModuleAction.ToggleMode.TOGGLE.name());
+            workingTag.putString("toggleMode", dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ToggleMode.TOGGLE.name());
             return;
         }
 
@@ -4777,7 +4777,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         }
         if (targetAction != null && targetAction.getType() == MacroActionType.WAIT_CHAT) {
             workingTag.putInt("fuzzyPercent",
-                    autismclient.util.macro.WaitForChatAction.clampFuzzyPercent(getWaitChatFuzzyPercent()));
+                    dev.xaihi.autismclient.common.util.macro.WaitForChatAction.clampFuzzyPercent(getWaitChatFuzzyPercent()));
             if (!workingTag.getBooleanOr("waitForGui", false)) {
                 workingTag.putString("waitGuiName", "");
             }
@@ -5087,29 +5087,29 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     public void prepareWorkingTagForEditor(MacroAction action) {
         if (action == null || workingTag == null) return;
 
-        if (action instanceof autismclient.util.macro.SelectSlotAction selectSlotAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.SelectSlotAction selectSlotAction) {
             primeStructuredField("itemName", selectSlotAction.itemTarget, selectSlotAction.itemName, null);
         }
-        if (action instanceof autismclient.util.macro.UseItemAction useItemAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.UseItemAction useItemAction) {
             primeStructuredField("itemName", useItemAction.itemTarget, useItemAction.itemName, null);
         }
-        if (action instanceof autismclient.util.macro.WaitForCooldownAction waitForCooldownAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.WaitForCooldownAction waitForCooldownAction) {
             primeStructuredField("itemName", waitForCooldownAction.itemTarget, waitForCooldownAction.itemName, null);
         }
-        if (action instanceof autismclient.util.macro.CloseGuiAction closeGuiAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.CloseGuiAction closeGuiAction) {
             primeStructuredField("itemName", closeGuiAction.itemTarget, closeGuiAction.itemName, "targetSlot");
         }
-        if (action instanceof autismclient.util.macro.SwapSlotsAction swapSlotsAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.SwapSlotsAction swapSlotsAction) {
             primeStructuredField("fromItemName", swapSlotsAction.fromItemTarget, swapSlotsAction.fromItemName, null);
             primeStructuredField("toItemName", swapSlotsAction.toItemTarget, swapSlotsAction.toItemName, null);
         }
-        if (action instanceof autismclient.util.macro.StoreItemAction storeItemAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.StoreItemAction storeItemAction) {
             primeStructuredList("targetItems", storeItemAction.itemTargets, storeItemAction.targetItems);
         }
-        if (action instanceof autismclient.util.macro.XCarryAction xCarryAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.XCarryAction xCarryAction) {
             primeStructuredList("entries", xCarryAction.entryTargets, xCarryAction.entries);
         }
-        if (action instanceof autismclient.util.macro.InventoryAuditAction inventoryAuditAction) {
+        if (action instanceof dev.xaihi.autismclient.common.util.macro.InventoryAuditAction inventoryAuditAction) {
             primeStructuredList("targetItems", inventoryAuditAction.itemTargets, inventoryAuditAction.targetItems);
         }
     }
@@ -5296,29 +5296,29 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     public void rewriteStructuredEditorTargets() {
         if (targetAction == null || workingTag == null) return;
 
-        if (targetAction instanceof autismclient.util.macro.SelectSlotAction) {
+        if (targetAction instanceof dev.xaihi.autismclient.common.util.macro.SelectSlotAction) {
             writeStructuredField("itemName", buildStructuredFieldTarget("itemName", null));
         }
-        if (targetAction instanceof autismclient.util.macro.UseItemAction) {
+        if (targetAction instanceof dev.xaihi.autismclient.common.util.macro.UseItemAction) {
             writeStructuredField("itemName", buildStructuredFieldTarget("itemName", null));
         }
-        if (targetAction instanceof autismclient.util.macro.WaitForCooldownAction) {
+        if (targetAction instanceof dev.xaihi.autismclient.common.util.macro.WaitForCooldownAction) {
             writeStructuredField("itemName", buildStructuredFieldTarget("itemName", null));
         }
-        if (targetAction instanceof autismclient.util.macro.CloseGuiAction) {
+        if (targetAction instanceof dev.xaihi.autismclient.common.util.macro.CloseGuiAction) {
             writeStructuredField("itemName", buildStructuredFieldTarget("itemName", "targetSlot"));
         }
-        if (targetAction instanceof autismclient.util.macro.SwapSlotsAction) {
+        if (targetAction instanceof dev.xaihi.autismclient.common.util.macro.SwapSlotsAction) {
             writeStructuredField("fromItemName", buildStructuredFieldTarget("fromItemName", null));
             writeStructuredField("toItemName", buildStructuredFieldTarget("toItemName", null));
         }
-        if (targetAction instanceof autismclient.util.macro.StoreItemAction) {
+        if (targetAction instanceof dev.xaihi.autismclient.common.util.macro.StoreItemAction) {
             writeStructuredList("targetItems", buildStructuredListTargets("targetItems"));
         }
-        if (targetAction instanceof autismclient.util.macro.XCarryAction) {
+        if (targetAction instanceof dev.xaihi.autismclient.common.util.macro.XCarryAction) {
             writeStructuredList("entries", buildStructuredListTargets("entries"));
         }
-        if (targetAction instanceof autismclient.util.macro.InventoryAuditAction) {
+        if (targetAction instanceof dev.xaihi.autismclient.common.util.macro.InventoryAuditAction) {
             writeStructuredList("targetItems", buildStructuredListTargets("targetItems"));
         }
     }
@@ -5401,7 +5401,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         ItemTarget target = buildEntryTargetFromEditor(nameText, slotText, entry.resolvedTarget());
         String rawTarget = target.toLegacyEntry();
         String norm = rawTarget.isEmpty() ? "" :
-                autismclient.util.macro.StoreItemAction.normalizeTargetEntry(rawTarget);
+                dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(rawTarget);
         if (norm == null) norm = "";
         if (!wscTargetExistsOtherThan(norm, wscEditIndex)) {
             entry.target = norm;
@@ -5431,7 +5431,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         ItemTarget target = buildEntryTargetFromEditor(nameText, slotText, null);
         String rawTarget = target.toLegacyEntry();
         String norm = rawTarget.isEmpty() ? "" :
-                autismclient.util.macro.StoreItemAction.normalizeTargetEntry(rawTarget);
+                dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(rawTarget);
         if (norm == null) norm = "";
         if (!wscTargetExists(norm)) {
             WaitForSlotChangeAction.WaitEntry entry = new WaitForSlotChangeAction.WaitEntry(norm, wscAddMode, wscAddCount);
@@ -5546,7 +5546,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         if (key == null || entries == null || capturedTarget == null) return;
         String normalized = capturedTarget.toLegacyEntry();
         if (usesStoreTargetFormatting(key) || isWaitSlotChangeEntryKey(key)) {
-            normalized = autismclient.util.macro.StoreItemAction.normalizeTargetEntry(normalized);
+            normalized = dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(normalized);
         } else if (isXCarryListKey(key)) {
             normalized = normalizeXCarryEntry(normalized);
         }
@@ -5619,7 +5619,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         }
 
         String mode = currentEnumValue("mode");
-        boolean playerInventorySlot = autismclient.util.PackUtilInventoryHelper.isInventorySlot(MC, slot);
+        boolean playerInventorySlot = dev.xaihi.autismclient.common.util.PackUtilInventoryHelper.isInventorySlot(MC, slot);
         if ("LOOT".equals(mode) && playerInventorySlot) {
             return new CaptureListAddResult(false, "Steal only accepts chest/custom GUI slots", CAPTURE_TOAST_ERROR);
         }
@@ -5638,7 +5638,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         if (!trimmed.startsWith("#") && trimmed.matches("\\d+")) {
             trimmed = "#" + trimmed;
         }
-        return autismclient.util.macro.XCarryAction.normalizeEntry(trimmed);
+        return dev.xaihi.autismclient.common.util.macro.XCarryAction.normalizeEntry(trimmed);
     }
 
     public boolean addStringListEntry(FieldDef field, List<String> entries, String rawEntry) {
@@ -5649,7 +5649,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         if (field != null && isXCarryListKey(field.key())) {
             entry = normalizeXCarryEntry(entry);
             if (entry == null || entries.contains(entry)) return false;
-            if (entries.size() >= autismclient.util.macro.XCarryAction.MAX_ENTRIES) {
+            if (entries.size() >= dev.xaihi.autismclient.common.util.macro.XCarryAction.MAX_ENTRIES) {
                 PackUtilClientMessaging.sendPrefixed("XCarry can only store 4 crafting-grid entries.");
                 return false;
             }
@@ -5665,7 +5665,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         }
 
         if (field != null && (usesStoreTargetFormatting(field.key()) || isWaitSlotChangeEntryKey(field.key()))) {
-            entry = autismclient.util.macro.StoreItemAction.normalizeTargetEntry(entry);
+            entry = dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(entry);
             if (entry == null || entry.isBlank() || entries.contains(entry)) return false;
             entries.add(entry);
             return true;
@@ -5697,7 +5697,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             if (entries.contains(entry)) {
                 return new CaptureListAddResult(false, "Already added " + formatted, CAPTURE_TOAST_ERROR);
             }
-            if (entries.size() >= autismclient.util.macro.XCarryAction.MAX_ENTRIES) {
+            if (entries.size() >= dev.xaihi.autismclient.common.util.macro.XCarryAction.MAX_ENTRIES) {
                 return new CaptureListAddResult(false, "XCarry limit reached: 4 entries max", CAPTURE_TOAST_ERROR);
             }
             entries.add(entry);
@@ -5705,7 +5705,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         }
 
         if (field != null && (usesStoreTargetFormatting(field.key()) || isWaitSlotChangeEntryKey(field.key()))) {
-            entry = autismclient.util.macro.StoreItemAction.normalizeTargetEntry(entry);
+            entry = dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(entry);
             if (entry == null || entry.isBlank()) {
                 return new CaptureListAddResult(false, "Could not read that slot target", CAPTURE_TOAST_ERROR);
             }
@@ -5725,11 +5725,11 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
     public String formatStringListEntry(String key, String entry) {
         if (isXCarryListKey(key)) {
-            String formatted = autismclient.util.macro.XCarryAction.formatEntry(entry);
+            String formatted = dev.xaihi.autismclient.common.util.macro.XCarryAction.formatEntry(entry);
             if (!formatted.isEmpty()) return formatted;
         }
         if (usesStoreTargetFormatting(key) || isWaitSlotChangeEntryKey(key)) {
-            return autismclient.util.macro.StoreItemAction.formatTargetEntry(entry);
+            return dev.xaihi.autismclient.common.util.macro.StoreItemAction.formatTargetEntry(entry);
         }
         if (isOpenContainerEntityListKey(key)) {
             return formatEntityEntry(entry);
@@ -5918,7 +5918,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     }
 
     public void startLookAtEntityCapture() {
-        if (!(targetAction instanceof autismclient.util.macro.LookAtBlockAction)) return;
+        if (!(targetAction instanceof dev.xaihi.autismclient.common.util.macro.LookAtBlockAction)) return;
         Screen previousScreen = MC.screen;
         enterEditorOnlyCaptureMode();
         PackUtilSharedState state = PackUtilSharedState.get();
@@ -6153,7 +6153,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         List<String> selected = stringLists.getOrDefault("targetItems", Collections.emptyList());
         if (!toggleStates.getOrDefault("allItems", false)) {
             cy = renderSimpleSelectedList(ctx, x, cy, w, mx, my, "store_items_selected", "Target Items", selected,
-                    selected::remove, autismclient.util.macro.StoreItemAction::formatTargetEntry,
+                    selected::remove, dev.xaihi.autismclient.common.util.macro.StoreItemAction::formatTargetEntry,
                     value -> formatStringListEntryText("targetItems", value, selected.indexOf(value)),
                     selected::clear,
                     "(nothing selected - search, type #slot, or capture)", true);
@@ -6196,7 +6196,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 String slotText = storeSlotF.getText().strip();
                 String entry = buildEntryFromNameAndSlot(nameText, slotText);
                 if (!entry.isEmpty()) {
-                    String normalized = autismclient.util.macro.StoreItemAction.normalizeTargetEntry(entry);
+                    String normalized = dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(entry);
                     if (normalized != null && !normalized.isBlank() && !normalized.equals(selected.get(storeEditIdx))) {
                         selected.set(storeEditIdx, normalized);
                         editorItemLists.put("targetItems", buildStructuredListTargets("targetItems"));
@@ -6211,7 +6211,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 String slotText = fStoreSlotF.getText().strip();
                 String entry = buildEntryFromNameAndSlot(nameText, slotText);
                 if (!entry.isEmpty()) {
-                    String normalized = autismclient.util.macro.StoreItemAction.normalizeTargetEntry(entry);
+                    String normalized = dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(entry);
                     if (normalized != null && !normalized.isBlank() && !selected.contains(normalized)) {
                         selected.add(normalized);
                         editorItemLists.put("targetItems", buildStructuredListTargets("targetItems"));
@@ -6290,7 +6290,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             int listTop = cy;
 
             cy = renderSimpleSelectedList(ctx, x, cy, w, mx, my, "audit_items_selected", "Targets", selected,
-                    selected::remove, autismclient.util.macro.StoreItemAction::formatTargetEntry,
+                    selected::remove, dev.xaihi.autismclient.common.util.macro.StoreItemAction::formatTargetEntry,
                     value -> formatStringListEntryText("targetItems", value, selected.indexOf(value)),
                     selected::clear,
                     emptyLabel,
@@ -6341,7 +6341,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 String slotText = auditSlotF.getText().strip();
                 String entry = buildEntryFromNameAndSlot(nameText, slotText);
                 if (!entry.isEmpty()) {
-                    String normalized = autismclient.util.macro.StoreItemAction.normalizeTargetEntry(entry);
+                    String normalized = dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(entry);
                     if (normalized != null && !normalized.isBlank() && !normalized.equals(selected.get(auditEditIdx))) {
                         selected.set(auditEditIdx, normalized);
                         editorItemLists.put("targetItems", buildStructuredListTargets("targetItems"));
@@ -6378,7 +6378,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 String slotText = fAuditSlotF.getText().strip();
                 String entry = buildEntryFromNameAndSlot(nameText, slotText);
                 if (!entry.isEmpty()) {
-                    String normalized = autismclient.util.macro.StoreItemAction.normalizeTargetEntry(entry);
+                    String normalized = dev.xaihi.autismclient.common.util.macro.StoreItemAction.normalizeTargetEntry(entry);
                     if (normalized != null && !normalized.isBlank() && !selected.contains(normalized)) {
                         selected.add(normalized);
                         editorItemLists.put("targetItems", buildStructuredListTargets("targetItems"));
@@ -6462,10 +6462,10 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         cy += 6 * CATALOG_ITEM_H + 4;
 
         PackUtilChatField amountField = textFields.get("amountInput");
-        long amount = autismclient.util.macro.PayAction.parseAmount(amountField != null ? amountField.getText() : "");
+        long amount = dev.xaihi.autismclient.common.util.macro.PayAction.parseAmount(amountField != null ? amountField.getText() : "");
         String summary = selected.isEmpty()
                 ? "No players selected."
-                : "Pays " + selected.size() + " player(s) " + autismclient.util.macro.PayAction.formatAmount(amount) + " each.";
+                : "Pays " + selected.size() + " player(s) " + dev.xaihi.autismclient.common.util.macro.PayAction.formatAmount(amount) + " each.";
         cy = renderEditorHint(ctx, x, cy, w, summary);
 
         String hint = payPlayerScanPerformed
@@ -6477,7 +6477,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     public void renderToggleModulePanel(GuiGraphicsExtractor ctx, int x, int bodyTop, int w, int mx, int my, float delta) {
         Identifier font = theme.fontFor(PackUiTone.BODY);
         int cy = bodyTop + PAD;
-        List<autismclient.util.macro.ToggleModuleAction.ModuleEntry> selected =
+        List<dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry> selected =
                 toggleModuleEntries != null ? toggleModuleEntries : Collections.emptyList();
 
         PackUiText.draw(ctx, textRenderer, "Module Actions (" + selected.size() + ")", font, PackUtilColors.textSecondary(), x, cy + 2, false);
@@ -6509,7 +6509,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             for (int i = first; i < selected.size() && i <= toggleViewport.getLastVisibleRow(); i++) {
                 int iy = toggleViewport.getRowScreenY(i);
                 if (iy == Integer.MIN_VALUE) continue;
-                autismclient.util.macro.ToggleModuleAction.ModuleEntry entry = selected.get(i);
+                dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry entry = selected.get(i);
                 int removeW = 13;
                 int modeW = 52;
                 int rowW = itemW - removeW - modeW - 4;
@@ -6531,9 +6531,9 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
                 String modeLabel = formatToggleModeShort(entry.toggleMode);
                 final int entryIndex = i;
                 renderOverlayButton(ctx, modeX, iy, modeW, 13, modeLabel,
-                        entry.toggleMode == autismclient.util.macro.ToggleModuleAction.ToggleMode.ENABLE
+                        entry.toggleMode == dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ToggleMode.ENABLE
                                 ? PackUiOverlayButton.Variant.SUCCESS
-                                : (entry.toggleMode == autismclient.util.macro.ToggleModuleAction.ToggleMode.DISABLE
+                                : (entry.toggleMode == dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ToggleMode.DISABLE
                                     ? PackUiOverlayButton.Variant.DANGER
                                     : PackUiOverlayButton.Variant.GHOST),
                         true, mx, my, () -> cycleToggleModuleEntryMode(entryIndex));
@@ -6613,7 +6613,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         meteorModuleNames.clear();
         PackUiScrollViewport vp = catalogScrollViewports.get("toggle_module_registry");
         if (vp != null) vp.jumpTo(0);
-        for (String moduleName : autismclient.util.PackUtilCompatManager.getMeteorModuleNames()) {
+        for (String moduleName : dev.xaihi.autismclient.common.util.PackUtilCompatManager.getMeteorModuleNames()) {
             if (moduleName != null && !moduleName.isBlank() && !containsIgnoreCase(meteorModuleNames, moduleName)) {
                 meteorModuleNames.add(moduleName);
             }
@@ -6668,12 +6668,12 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
     public void addToggleModuleEntry(String moduleName) {
         if (toggleModuleEntries == null || moduleName == null || moduleName.isBlank() || containsModuleEntry(toggleModuleEntries, moduleName)) return;
-        toggleModuleEntries.add(new autismclient.util.macro.ToggleModuleAction.ModuleEntry(moduleName, autismclient.util.macro.ToggleModuleAction.ToggleMode.TOGGLE));
+        toggleModuleEntries.add(new dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry(moduleName, dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ToggleMode.TOGGLE));
     }
 
-    public boolean containsModuleEntry(List<autismclient.util.macro.ToggleModuleAction.ModuleEntry> entries, String moduleName) {
+    public boolean containsModuleEntry(List<dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry> entries, String moduleName) {
         if (entries == null || moduleName == null) return false;
-        for (autismclient.util.macro.ToggleModuleAction.ModuleEntry entry : entries) {
+        for (dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry entry : entries) {
             if (entry != null && entry.moduleName != null && entry.moduleName.equalsIgnoreCase(moduleName)) return true;
         }
         return false;
@@ -6681,15 +6681,15 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
     public void cycleToggleModuleEntryMode(int index) {
         if (toggleModuleEntries == null || index < 0 || index >= toggleModuleEntries.size()) return;
-        autismclient.util.macro.ToggleModuleAction.ModuleEntry entry = toggleModuleEntries.get(index);
+        dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ModuleEntry entry = toggleModuleEntries.get(index);
         entry.toggleMode = switch (entry.toggleMode) {
-            case TOGGLE -> autismclient.util.macro.ToggleModuleAction.ToggleMode.ENABLE;
-            case ENABLE -> autismclient.util.macro.ToggleModuleAction.ToggleMode.DISABLE;
-            case DISABLE -> autismclient.util.macro.ToggleModuleAction.ToggleMode.TOGGLE;
+            case TOGGLE -> dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ToggleMode.ENABLE;
+            case ENABLE -> dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ToggleMode.DISABLE;
+            case DISABLE -> dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ToggleMode.TOGGLE;
         };
     }
 
-    public String formatToggleModeShort(autismclient.util.macro.ToggleModuleAction.ToggleMode mode) {
+    public String formatToggleModeShort(dev.xaihi.autismclient.common.util.macro.ToggleModuleAction.ToggleMode mode) {
         return switch (mode) {
             case ENABLE -> "Enable";
             case DISABLE -> "Disable";
@@ -7210,7 +7210,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             cy += 18;
         }
 
-        List<autismclient.util.macro.MacroExecutor.RecentChatMessage> history = filterWaitChatHistory();
+        List<dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage> history = filterWaitChatHistory();
         PackUiText.draw(ctx, textRenderer, "Recent Messages (" + history.size() + ")",
                 font, PackUtilColors.textSecondary(), x, cy + 2, false);
         PackUiText.draw(ctx, textRenderer,
@@ -7269,7 +7269,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         PackUtilChatField field = textFields.get("fuzzyPercent");
         if (field == null) return 100;
         try {
-            return autismclient.util.macro.WaitForChatAction.clampFuzzyPercent(Integer.parseInt(field.getText().trim()));
+            return dev.xaihi.autismclient.common.util.macro.WaitForChatAction.clampFuzzyPercent(Integer.parseInt(field.getText().trim()));
         } catch (NumberFormatException ignored) {
             return 100;
         }
@@ -7277,7 +7277,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
     public void setWaitChatFuzzyPercent(int percent) {
         PackUtilChatField field = textFields.get("fuzzyPercent");
-        if (field != null) field.setText(String.valueOf(autismclient.util.macro.WaitForChatAction.clampFuzzyPercent(percent)));
+        if (field != null) field.setText(String.valueOf(dev.xaihi.autismclient.common.util.macro.WaitForChatAction.clampFuzzyPercent(percent)));
     }
 
     public void clearWaitChatFuzzySliderBounds() {
@@ -7350,7 +7350,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         PackUtilChatField field = textFields.get("smoothness");
         if (field == null) return 9;
         try {
-            return autismclient.util.macro.RotateAction.clampSmoothness(Integer.parseInt(field.getText().trim()));
+            return dev.xaihi.autismclient.common.util.macro.RotateAction.clampSmoothness(Integer.parseInt(field.getText().trim()));
         } catch (NumberFormatException ignored) {
             return 9;
         }
@@ -7358,7 +7358,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
 
     public void setRotateSmoothness(int smoothness) {
         PackUtilChatField field = textFields.get("smoothness");
-        if (field != null) field.setText(String.valueOf(autismclient.util.macro.RotateAction.clampSmoothness(smoothness)));
+        if (field != null) field.setText(String.valueOf(dev.xaihi.autismclient.common.util.macro.RotateAction.clampSmoothness(smoothness)));
     }
 
     public void clearRotateSmoothnessSliderBounds() {
@@ -7385,7 +7385,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         setRotateSmoothness(1 + stepIndex);
     }
 
-    public void applyWaitChatHistoryEntry(autismclient.util.macro.MacroExecutor.RecentChatMessage entry) {
+    public void applyWaitChatHistoryEntry(dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage entry) {
         PackUtilChatField field = textFields.get("pattern");
         if (field != null && entry != null) {
             Component patternComponent = entry.displayComponent() != null
@@ -7402,14 +7402,14 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         String visibleText = safeComponent.getString();
         workingTag.putString("pattern", visibleText);
         workingTag.putString("patternJson",
-                autismclient.util.macro.MacroExecutor.serializeTextComponent(safeComponent));
+                dev.xaihi.autismclient.common.util.macro.MacroExecutor.serializeTextComponent(safeComponent));
         suppressWaitChatPatternSync = true;
         field.setText(visibleText);
         suppressWaitChatPatternSync = false;
     }
 
     public Component getWaitChatPatternComponent(String fallbackValue) {
-        Component exact = autismclient.util.macro.MacroExecutor.deserializeTextComponent(
+        Component exact = dev.xaihi.autismclient.common.util.macro.MacroExecutor.deserializeTextComponent(
                 workingTag != null ? workingTag.getStringOr("patternJson", "") : "");
         if (exact != null) return exact.copy();
         return Component.literal(fallbackValue == null ? "" : fallbackValue);
@@ -7518,14 +7518,14 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         return previousStyles.get(Math.max(0, Math.min(anchorIndex, previousStyles.size() - 1)));
     }
 
-    public List<autismclient.util.macro.MacroExecutor.RecentChatMessage> filterWaitChatHistory() {
-        List<autismclient.util.macro.MacroExecutor.RecentChatMessage> history =
-                autismclient.util.macro.MacroExecutor.getRecentChatMessages();
+    public List<dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage> filterWaitChatHistory() {
+        List<dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage> history =
+                dev.xaihi.autismclient.common.util.macro.MacroExecutor.getRecentChatMessages();
         PackUtilChatField searchField = addFields.get("_wait_chat_search");
         String query = searchField != null ? searchField.getText().trim() : "";
-        List<autismclient.util.macro.MacroExecutor.RecentChatMessage> filtered = new ArrayList<>();
+        List<dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage> filtered = new ArrayList<>();
         String normalizedQuery = query.isEmpty() ? "" : normalizeWaitChatSearch(query);
-        for (autismclient.util.macro.MacroExecutor.RecentChatMessage entry : history) {
+        for (dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage entry : history) {
             if (normalizedQuery.isEmpty()) {
                 filtered.add(entry);
                 continue;
@@ -7537,10 +7537,10 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     }
 
     public String normalizeWaitChatSearch(String text) {
-        return autismclient.util.macro.MacroExecutor.normalizeChatText(text);
+        return dev.xaihi.autismclient.common.util.macro.MacroExecutor.normalizeChatText(text);
     }
 
-    public String formatWaitChatHistoryEntry(autismclient.util.macro.MacroExecutor.RecentChatMessage entry) {
+    public String formatWaitChatHistoryEntry(dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage entry) {
         if (entry == null) return "";
         if (entry.displayComponent() != null) {
             String rendered = entry.displayComponent().getString();
@@ -7549,12 +7549,12 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         String sender = entry.sender() == null ? "" : entry.sender().trim();
         String message = entry.message() == null ? "" : entry.message().trim();
         if (!sender.isEmpty() && !message.isEmpty()) return sender + ": " + message;
-        if (!message.isEmpty()) return (entry.source() == autismclient.util.macro.MacroExecutor.ChatSource.SERVER ? "[Server] " : "[Player] ") + message;
+        if (!message.isEmpty()) return (entry.source() == dev.xaihi.autismclient.common.util.macro.MacroExecutor.ChatSource.SERVER ? "[Server] " : "[Player] ") + message;
         return entry.displayText() == null ? "" : entry.displayText();
     }
 
     public void renderWaitChatHistoryList(GuiGraphicsExtractor ctx, int x, int y, int w, int listH, int mx, int my,
-                                           List<autismclient.util.macro.MacroExecutor.RecentChatMessage> values) {
+                                           List<dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage> values) {
         Identifier font = theme.fontFor(PackUiTone.BODY);
         int desiredListH = values.isEmpty()
                 ? 24
@@ -7592,7 +7592,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
             var value = values.get(i);
             boolean hovered = mx >= x && mx < x + itemW && my >= iy && my < iy + itemH;
             ctx.fill(x, iy, x + itemW, iy + itemH, hovered ? PackUtilColors.rowHover() : PackUtilColors.rowNormal());
-            int border = value.source() == autismclient.util.macro.MacroExecutor.ChatSource.SERVER
+            int border = value.source() == dev.xaihi.autismclient.common.util.macro.MacroExecutor.ChatSource.SERVER
                     ? (hovered ? 0xFFFFB15A : 0xFFCC7A22)
                     : (hovered ? 0xFF7CCEFF : 0xFF4E95C8);
             fillBorder(ctx, x, iy, itemW, itemH, border);
@@ -7620,7 +7620,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
         return Math.min(WAIT_CHAT_VISIBLE_ROWS, count) * WAIT_CHAT_ROW_H;
     }
 
-    public List<FormattedCharSequence> wrapWaitChatDisplayLines(autismclient.util.macro.MacroExecutor.RecentChatMessage entry, int maxWidth, int maxLines) {
+    public List<FormattedCharSequence> wrapWaitChatDisplayLines(dev.xaihi.autismclient.common.util.macro.MacroExecutor.RecentChatMessage entry, int maxWidth, int maxLines) {
         Component display = entry != null && entry.displayComponent() != null
                 ? entry.displayComponent()
                 : Component.literal(formatWaitChatHistoryEntry(entry));
@@ -7802,14 +7802,14 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     }
 
     public void applyDefaultDelayPacketPreset() {
-        autismclient.util.macro.DelayPacketsAction tmp = new autismclient.util.macro.DelayPacketsAction();
+        dev.xaihi.autismclient.common.util.macro.DelayPacketsAction tmp = new dev.xaihi.autismclient.common.util.macro.DelayPacketsAction();
         tmp.applyDefaultPreset();
         stringLists.put("c2sPackets", new ArrayList<>(tmp.c2sPacketNames));
         stringLists.put("s2cPackets", new ArrayList<>(tmp.s2cPacketNames));
     }
 
     public void applyModuleDelayPacketPreset() {
-        autismclient.util.macro.DelayPacketsAction tmp = new autismclient.util.macro.DelayPacketsAction();
+        dev.xaihi.autismclient.common.util.macro.DelayPacketsAction tmp = new dev.xaihi.autismclient.common.util.macro.DelayPacketsAction();
         tmp.applyModulePreset();
         stringLists.put("c2sPackets", new ArrayList<>(tmp.c2sPacketNames));
         stringLists.put("s2cPackets", new ArrayList<>(tmp.s2cPacketNames));
@@ -8273,7 +8273,7 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     }
 
     public void startWaitEntityCapture() {
-        if (!(targetAction instanceof autismclient.util.macro.WaitForEntityAction)) return;
+        if (!(targetAction instanceof dev.xaihi.autismclient.common.util.macro.WaitForEntityAction)) return;
         Screen previousScreen = MC.screen;
         enterEditorOnlyCaptureMode();
         PackUtilSharedState state = PackUtilSharedState.get();
@@ -8320,13 +8320,13 @@ public class ActionEditorOverlay extends PackUtilOverlayBase {
     }
 
     public List<String> getNearbyEntityEntries() {
-        boolean supportedAction = targetAction instanceof autismclient.util.macro.WaitForEntityAction
-                || targetAction instanceof autismclient.util.macro.LookAtBlockAction
-                || targetAction instanceof autismclient.util.macro.OpenContainerAction;
+        boolean supportedAction = targetAction instanceof dev.xaihi.autismclient.common.util.macro.WaitForEntityAction
+                || targetAction instanceof dev.xaihi.autismclient.common.util.macro.LookAtBlockAction
+                || targetAction instanceof dev.xaihi.autismclient.common.util.macro.OpenContainerAction;
         if (!supportedAction || MC.player == null || MC.level == null) {
             return Collections.emptyList();
         }
-        boolean openContainerAction = targetAction instanceof autismclient.util.macro.OpenContainerAction;
+        boolean openContainerAction = targetAction instanceof dev.xaihi.autismclient.common.util.macro.OpenContainerAction;
         List<String> result = new ArrayList<>();
         for (net.minecraft.world.entity.Entity entity : MC.level.entitiesForRendering()) {
             if (entity == MC.player) continue;

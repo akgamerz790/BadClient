@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.common.util;
 
-import dev.xaihi.autismclient.common.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 
@@ -849,7 +849,7 @@ public class PackUtilLANSync {
             AutismClientAddon.LOG.info("[Heartbeat] Peer timed out: {}", dead);
             fireCallback(onClientLeft);
             fireCallback(onPeerStatusChanged);
-            autismclient.util.macro.MacroConditionRegistry.onLanStepProgress();
+            dev.xaihi.autismclient.common.util.macro.MacroConditionRegistry.onLanStepProgress();
         }
 
         if (isHost && !deadPeers.isEmpty()) {
@@ -971,7 +971,7 @@ public class PackUtilLANSync {
                             }
                             fireCallback(onClientLeft);
                             fireCallback(onPeerStatusChanged);
-                            autismclient.util.macro.MacroConditionRegistry.onLanStepProgress();
+                            dev.xaihi.autismclient.common.util.macro.MacroConditionRegistry.onLanStepProgress();
                         }
                     }
                     break;
@@ -1242,7 +1242,7 @@ public class PackUtilLANSync {
                         broadcastClientList();
                         fireCallback(onClientLeft);
 
-                        autismclient.util.macro.MacroConditionRegistry.onLanStepProgress();
+                        dev.xaihi.autismclient.common.util.macro.MacroConditionRegistry.onLanStepProgress();
                     }
                 }
             }
@@ -1781,7 +1781,7 @@ public class PackUtilLANSync {
         }
 
         if ("__STOP_ALL__".equals(safeSender)) {
-            autismclient.util.macro.MacroExecutor.stop();
+            dev.xaihi.autismclient.common.util.macro.MacroExecutor.stop();
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§c[LAN] Macros stopped by " + safeMessage);
             return;
         }
@@ -1848,7 +1848,7 @@ public class PackUtilLANSync {
             peerStepProgress.put(senderUsername, completedStep);
         }
 
-        autismclient.util.macro.MacroConditionRegistry.onLanStepProgress();
+        dev.xaihi.autismclient.common.util.macro.MacroConditionRegistry.onLanStepProgress();
 
         Runnable listener = onStepProgressChanged;
         if (listener != null) listener.run();
@@ -1909,7 +1909,7 @@ public class PackUtilLANSync {
     public void broadcastStopAll() {
         if (!isInSession()) return;
 
-        autismclient.util.macro.MacroExecutor.stop();
+        dev.xaihi.autismclient.common.util.macro.MacroExecutor.stop();
         PackUtilClientMessaging.sendPrefixed("Ã‚Â§c[LAN] Macros stopped by " + myUsername);
 
         sendTcpPacket(new LanPacket.ChatMessagePacket(sessionId, "__STOP_ALL__", myUsername));
@@ -1945,7 +1945,7 @@ public class PackUtilLANSync {
         sendTcpPacket(new LanPacket.MacroStepProgressPacket(sessionId, myUsername, completedStep, totalSteps,
                 macroName != null ? macroName : ""));
 
-        autismclient.util.macro.MacroConditionRegistry.onLanStepProgress();
+        dev.xaihi.autismclient.common.util.macro.MacroConditionRegistry.onLanStepProgress();
     }
 
     public int getPeerStep(String username) {
