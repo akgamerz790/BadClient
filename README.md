@@ -63,4 +63,13 @@ cd AutismClient
 # Build the project
 ./gradlew build
 ```
-# Maintained with ❤️ by Endfield Industries
+<hr>
+<p align="center">
+  <strong>Maintained with ❤️ by Endfield Industries</strong>
+</p>
+
+<hr>
+
+<p align="center">
+  <strong>END OF DOCUMENT</strong>
+</p>
