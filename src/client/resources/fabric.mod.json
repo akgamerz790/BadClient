@@ -1,0 +1,47 @@
+{
+	"schemaVersion": 1,
+	"id": "autismclient",
+	"version": "${mod_version}",
+	"name": "AUTISM Client",
+	"description": "AUTISM Client is an elite packet, macro, and duping toolkit built for players who want total control.",
+	"authors": [
+		"Melonik"
+	],
+	"contributors": [
+		"Seraphine Xaihi",
+		"akgamerz790",
+		"Tianshi Zhuang Fangyi",
+		"Amiya",
+		"Endfield Industries",
+		"UWST",
+		"TGCC",
+		"Wuling Research Department",
+		"Rhodes Island"
+	],
+	"contact": {
+		
+	},
+	"custom": {
+		"modmenu": {
+		"links": {
+			"Discord": "https://discord.gg/2WQuvztM8m"
+			}
+		}
+	},
+	"icon": "assets/autismclient/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"autismclient.PackUtilClientMod"
+		]
+	},
+	"mixins": [
+		"packutil.mixins.json"
+	],
+	"depends": {
+		"java": ">=25",
+		"minecraft": "${mc_version}",
+		"fabricloader": ">=0.18.4",
+		"fabric-api": "*"
+	}
+}

@@ -3,7 +3,7 @@
 	"package": "dev.xaihi.autismclient.client.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
-		"ExampleClientMixin"
+		"AutismClientMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
