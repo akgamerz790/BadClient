@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.mixin;
 
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.InBedChatScreen;

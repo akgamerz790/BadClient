@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.mixin;
 
-import autismclient.gui.packui.PackUiText;
+import dev.xaihi.autismclient.common.gui.packui.PackUiText;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.renderer.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;

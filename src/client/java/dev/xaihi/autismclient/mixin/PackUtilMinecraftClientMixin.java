@@ -1,9 +1,9 @@
 package dev.xaihi.autismclient.mixin;
 
-import autismclient.gui.PackUtilLoadingOverlay;
-import autismclient.gui.macro.editor.ActionEditorOverlay;
-import autismclient.gui.screen.PackUtilTitleScreen;
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.gui.PackUtilLoadingOverlay;
+import dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay;
+import dev.xaihi.autismclient.common.gui.screen.PackUtilTitleScreen;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.PackUtilSharedState;
 import dev.xaihi.autismclient.common.util.PackUtilWindowBranding;
 import net.minecraft.client.Minecraft;

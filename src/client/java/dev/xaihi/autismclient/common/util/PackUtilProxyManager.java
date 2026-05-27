@@ -70,7 +70,7 @@ public final class PackUtilProxyManager implements Iterable<PackUtilProxy> {
                 if (element instanceof CompoundTag compoundTag) proxies.add(new PackUtilProxy().fromTag(compoundTag));
             }
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to load PackUtil proxies", e);
+            //AutismClientAddon.LOG.error("Failed to load PackUtil proxies", e);
         }
     }
 
@@ -89,7 +89,7 @@ public final class PackUtilProxyManager implements Iterable<PackUtilProxy> {
             tag.put("proxies", list);
             NbtIo.write(tag, saveFile().toPath());
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to save PackUtil proxies", e);
+            //AutismClientAddon.LOG.error("Failed to save PackUtil proxies", e);
         }
     }
 
@@ -225,7 +225,7 @@ public final class PackUtilProxyManager implements Iterable<PackUtilProxy> {
                 if (proxy != null && add(proxy)) added++;
             }
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to import proxies", e);
+            //AutismClientAddon.LOG.error("Failed to import proxies", e);
         }
         return added;
     }

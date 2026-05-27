@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.PackUtilOverlayManager;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;

@@ -1,5 +1,6 @@
 package dev.xaihi.autismclient.client;
 
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import dev.xaihi.autismclient.common.gui.packui.PackUiText;
 import dev.xaihi.autismclient.common.gui.packui.PackUiTextPipelines;
 import dev.xaihi.autismclient.common.modules.PackUtilModule;

@@ -6,12 +6,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.macro.MacroExecutor;
 import dev.xaihi.autismclient.common.util.PackUtilClientMessaging;
 import dev.xaihi.autismclient.common.util.PackUtilContainerTarget;
 import dev.xaihi.autismclient.common.util.PackUtilSharedState;
-import autismclient.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -165,18 +165,18 @@ public abstract class PackUtilClientConnectionMixin {
 
         if (!shouldHandle) return;
 
-        AutismClientAddon.LOG.debug("[PackUtil] Packet detected: {} | Send={} Delay={} | Custom={}",
-            packet.getClass().getSimpleName(), shared.shouldSendGuiPackets(),
-            shared.shouldDelayGuiPackets(), shared.shouldUseCustomPackets());
+        //AutismClientAddon.LOG.debug("[PackUtil] Packet detected: {} | Send={} Delay={} | Custom={}",
+            // packet.getClass().getSimpleName(), shared.shouldSendGuiPackets(),
+            // shared.shouldDelayGuiPackets(), shared.shouldUseCustomPackets());
 
         if (!shared.shouldSendGuiPackets()) {
-            AutismClientAddon.LOG.debug("[PackUtil] CANCELLED packet (send disabled)");
+            //AutismClientAddon.LOG.debug("[PackUtil] CANCELLED packet (send disabled)");
             ci.cancel();
             return;
         }
 
         if (shared.shouldDelayGuiPackets()) {
-            AutismClientAddon.LOG.debug("[PackUtil] QUEUED packet (delay enabled)");
+            //AutismClientAddon.LOG.debug("[PackUtil] QUEUED packet (delay enabled)");
             shared.enqueuePacket(packet);
             ci.cancel();
         }
@@ -237,9 +237,9 @@ public abstract class PackUtilClientConnectionMixin {
 
         if (!shouldHandle) return;
 
-        AutismClientAddon.LOG.debug("[PackUtil] S2C Packet detected: {} | Send={} Delay={}",
-            packet.getClass().getSimpleName(), shared.shouldSendGuiPackets(),
-            shared.shouldDelayGuiPackets());
+        //AutismClientAddon.LOG.debug("[PackUtil] S2C Packet detected: {} | Send={} Delay={}",
+            // packet.getClass().getSimpleName(), shared.shouldSendGuiPackets(),
+            // shared.shouldDelayGuiPackets());
 
         if (!shared.shouldSendGuiPackets()) {
             ci.cancel();

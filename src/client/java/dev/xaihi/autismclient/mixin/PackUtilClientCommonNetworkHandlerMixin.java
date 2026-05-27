@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.PackUtilClientMessaging;
 import dev.xaihi.autismclient.common.util.PackUtilSharedState;
 

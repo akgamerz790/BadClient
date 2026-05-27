@@ -221,13 +221,13 @@ public class PackUtilLauncherOverlay extends PackUtilOverlayBase {
         mainMenuSection.content().add(new PackUiIconLabel(label, icon).setTone(PackUiTone.LABEL).setIconSize(labelIconSize()));
     }
 
-    public PackUiButton addFullButton(autismclient.gui.packui.PackUiColumn parent, String label, Identifier icon, Runnable action) {
+    public PackUiButton addFullButton(dev.xaihi.autismclient.common.gui.packui.PackUiColumn parent, String label, Identifier icon, Runnable action) {
         PackUiButton button = actionButton(label, icon, PackUiButton.Variant.SECONDARY, action).setGrowX(true);
         parent.add(button);
         return button;
     }
 
-    public void addPairRow(autismclient.gui.packui.PackUiColumn parent, PackUiButton left, PackUiButton right) {
+    public void addPairRow(dev.xaihi.autismclient.common.gui.packui.PackUiColumn parent, PackUiButton left, PackUiButton right) {
         PackUiCompactRow row = new PackUiCompactRow().setGap(rowGap()).setPadding(PackUiInsets.NONE).setUnderlineOnHover(false);
         row.add(left);
         row.add(right);

@@ -52,7 +52,7 @@ public final class PackUtilAccountSessionSwitcher {
             accessor.packutil$setSkinManager(new SkinManager(skinCachePath, services, new SkinTextureDownloader(mc.getProxy(), mc.getTextureManager(), mc), mc));
             return true;
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to switch PackUtil account session", e);
+            //AutismClientAddon.LOG.error("Failed to switch PackUtil account session", e);
             return false;
         }
     }

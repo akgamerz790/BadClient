@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.PackUtilClientMessaging;
 import dev.xaihi.autismclient.common.util.PackUtilCustomFilterOverlay;
 import dev.xaihi.autismclient.common.util.PackUtilCustomFilterPresetOverlay;
@@ -95,7 +95,7 @@ public abstract class PackUtilBookEditScreenMixin extends Screen implements Pack
         keybindOverlay.restoreLayout();
         manager.register(keybindOverlay);
 
-        serverInfoOverlay = autismclient.modules.PackUtilModule.get().getServerDataOverlay();
+        serverInfoOverlay = dev.xaihi.autismclient.common.modules.PackUtilModule.get().getServerDataOverlay();
         manager.register(serverInfoOverlay);
 
         launcherOverlay = new PackUtilLauncherOverlay(macroListOverlay, null, lanSyncOverlay, queueEditorOverlay, packetLoggerOverlay, customFilterOverlay);

@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.mixin;
 
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.PackUtilSharedState;
 import dev.xaihi.autismclient.common.util.macro.MacroConditionRegistry;
 import net.minecraft.client.Minecraft;

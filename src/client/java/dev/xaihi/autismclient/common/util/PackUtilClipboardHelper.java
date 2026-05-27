@@ -46,10 +46,10 @@ public class PackUtilClipboardHelper {
             String base64 = Base64.getEncoder().encodeToString(outputStream.toByteArray());
 
             Minecraft.getInstance().keyboardHandler.setClipboard(base64);
-            AutismClientAddon.LOG.info("[PackUtil] Copied {} packets to clipboard", queue.size());
+            //AutismClientAddon.LOG.info("[PackUtil] Copied {} packets to clipboard", queue.size());
 
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to copy packets to clipboard", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to copy packets to clipboard", e);
         }
     }
 
@@ -67,10 +67,10 @@ public class PackUtilClipboardHelper {
             String base64 = Base64.getEncoder().encodeToString(outputStream.toByteArray());
 
             Minecraft.getInstance().keyboardHandler.setClipboard(base64);
-            AutismClientAddon.LOG.info("[PackUtil] Copied macro '{}' to clipboard", macro.name);
+            //AutismClientAddon.LOG.info("[PackUtil] Copied macro '{}' to clipboard", macro.name);
             return true;
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to copy macro to clipboard", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to copy macro to clipboard", e);
             return false;
         }
     }
@@ -79,7 +79,7 @@ public class PackUtilClipboardHelper {
         try {
             String base64 = Minecraft.getInstance().keyboardHandler.getClipboard();
             if (base64 == null || base64.trim().isEmpty()) {
-                AutismClientAddon.LOG.warn("[PackUtil] Macro clipboard is empty");
+                //AutismClientAddon.LOG.warn("[PackUtil] Macro clipboard is empty");
                 return null;
             }
 
@@ -89,25 +89,25 @@ public class PackUtilClipboardHelper {
 
             int version = rootTag.getIntOr("version", 0);
             if (version != CLIPBOARD_VERSION) {
-                AutismClientAddon.LOG.error("[PackUtil] Unsupported macro clipboard version: {}", version);
+                //AutismClientAddon.LOG.error("[PackUtil] Unsupported macro clipboard version: {}", version);
                 return null;
             }
 
             String type = rootTag.getStringOr("type", "");
             if (!MACRO_CLIPBOARD_TYPE.equals(type)) {
-                AutismClientAddon.LOG.warn("[PackUtil] Clipboard data is not a PackUtil macro payload");
+                //AutismClientAddon.LOG.warn("[PackUtil] Clipboard data is not a PackUtil macro payload");
                 return null;
             }
 
             CompoundTag macroTag = rootTag.getCompound("macro").orElse(new CompoundTag());
             if (macroTag.isEmpty()) {
-                AutismClientAddon.LOG.warn("[PackUtil] Macro clipboard payload was empty");
+                //AutismClientAddon.LOG.warn("[PackUtil] Macro clipboard payload was empty");
                 return null;
             }
 
             return new PackUtilMacro().fromTag(macroTag);
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to paste macro from clipboard", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to paste macro from clipboard", e);
             return null;
         }
     }
@@ -116,7 +116,7 @@ public class PackUtilClipboardHelper {
         try {
             String base64 = Minecraft.getInstance().keyboardHandler.getClipboard();
             if (base64 == null || base64.trim().isEmpty()) {
-                AutismClientAddon.LOG.warn("[PackUtil] Clipboard is empty");
+                //AutismClientAddon.LOG.warn("[PackUtil] Clipboard is empty");
                 return null;
             }
 
@@ -126,7 +126,7 @@ public class PackUtilClipboardHelper {
 
             int version = rootTag.getIntOr("version", 0);
             if (version != 1) {
-                AutismClientAddon.LOG.error("[PackUtil] Unsupported clipboard format version: {}", version);
+                //AutismClientAddon.LOG.error("[PackUtil] Unsupported clipboard format version: {}", version);
                 return null;
             }
 
@@ -141,11 +141,11 @@ public class PackUtilClipboardHelper {
                 }
             }
 
-            AutismClientAddon.LOG.info("[PackUtil] Pasted {} packets from clipboard", queue.size());
+            //AutismClientAddon.LOG.info("[PackUtil] Pasted {} packets from clipboard", queue.size());
             return queue.isEmpty() ? null : queue;
 
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to paste packets from clipboard", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to paste packets from clipboard", e);
             return null;
         }
     }
@@ -177,7 +177,7 @@ public class PackUtilClipboardHelper {
 
             return null;
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to deserialize packet from Base64", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to deserialize packet from Base64", e);
             return null;
         }
     }
@@ -196,7 +196,7 @@ public class PackUtilClipboardHelper {
 
             return null;
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to serialize queued packet", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to serialize queued packet", e);
             return null;
         }
     }
@@ -216,7 +216,7 @@ public class PackUtilClipboardHelper {
 
             return null;
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to deserialize queued packet", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to deserialize queued packet", e);
             return null;
         }
     }
@@ -274,7 +274,7 @@ public class PackUtilClipboardHelper {
             }
 
             if (packetClass == null) {
-                AutismClientAddon.LOG.error("[PackUtil] Could not find packet class: {}", className);
+                //AutismClientAddon.LOG.error("[PackUtil] Could not find packet class: {}", className);
                 return null;
             }
 
@@ -289,13 +289,13 @@ public class PackUtilClipboardHelper {
             deserializeFields(packet, fieldsTag);
 
             if (!PackUtilPacketRegistry.getC2SPackets().contains(packetClass)) {
-                AutismClientAddon.LOG.warn("[PackUtil] Deserialized packet {} is NOT a registered C2S packet! It may be skipped when sending.", className);
+                //AutismClientAddon.LOG.warn("[PackUtil] Deserialized packet {} is NOT a registered C2S packet! It may be skipped when sending.", className);
             }
 
             return packet;
 
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to deserialize packet", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to deserialize packet", e);
             return null;
         }
     }
@@ -314,7 +314,7 @@ public class PackUtilClipboardHelper {
                     Object value = field.get(obj);
                     serializeField(fieldsTag, field.getName(), value, field.getType());
                 } catch (Exception e) {
-                    AutismClientAddon.LOG.warn("[PackUtil] Failed to serialize field: {}", field.getName(), e);
+                    //AutismClientAddon.LOG.warn("[PackUtil] Failed to serialize field: {}", field.getName(), e);
                 }
             }
             clazz = clazz.getSuperclass();
@@ -564,7 +564,7 @@ public class PackUtilClipboardHelper {
                         }
                     }
                 } catch (Exception e) {
-                    AutismClientAddon.LOG.warn("[PackUtil] Failed to deserialize field: {}", fieldName, e);
+                    //AutismClientAddon.LOG.warn("[PackUtil] Failed to deserialize field: {}", fieldName, e);
                 }
             }
             clazz = clazz.getSuperclass();
@@ -840,8 +840,8 @@ public class PackUtilClipboardHelper {
                     emptyField.setAccessible(true);
                     Object empty = emptyField.get(null);
                     if (empty != null) {
-                        AutismClientAddon.LOG.warn("[PackUtil] Using {}.EMPTY for unsupported field: {}",
-                            type.getSimpleName(), fieldName);
+                        //AutismClientAddon.LOG.warn("[PackUtil] Using {}.EMPTY for unsupported field: {}",
+                            // type.getSimpleName(), fieldName);
                         return empty;
                     }
                 }
@@ -853,8 +853,8 @@ public class PackUtilClipboardHelper {
                     defaultField.setAccessible(true);
                     Object defaultValue = defaultField.get(null);
                     if (defaultValue != null) {
-                        AutismClientAddon.LOG.warn("[PackUtil] Using {}.DEFAULT for unsupported field: {}",
-                            type.getSimpleName(), fieldName);
+                        //AutismClientAddon.LOG.warn("[PackUtil] Using {}.DEFAULT for unsupported field: {}",
+                            // type.getSimpleName(), fieldName);
                         return defaultValue;
                     }
                 }
@@ -883,8 +883,6 @@ public class PackUtilClipboardHelper {
                         try {
                             args[i] = getSafeDefault(paramTypes[i], components[i].getName());
                         } catch (Exception e) {
-                            AutismClientAddon.LOG.warn("[PackUtil] Failed to create nested Record {}: {}",
-                                paramTypes[i].getSimpleName(), e.getMessage());
                             args[i] = null;
                         }
                     } else {
@@ -895,18 +893,18 @@ public class PackUtilClipboardHelper {
                 Constructor<?> constructor = type.getDeclaredConstructor(paramTypes);
                 constructor.setAccessible(true);
                 Object instance = constructor.newInstance(args);
-                AutismClientAddon.LOG.warn("[PackUtil] Created default {} for unsupported field: {}",
-                    type.getSimpleName(), fieldName);
+                //AutismClientAddon.LOG.warn("[PackUtil] Created default {} for unsupported field: {}",
+                    // type.getSimpleName(), fieldName);
                 return instance;
             }
 
         } catch (Exception e) {
-            AutismClientAddon.LOG.warn("[PackUtil] Could not create safe default for {}: {}",
-                type.getSimpleName(), e.getMessage());
+            //AutismClientAddon.LOG.warn("[PackUtil] Could not create safe default for {}: {}",
+                // type.getSimpleName(), e.getMessage());
         }
 
-        AutismClientAddon.LOG.error("[PackUtil] No safe default found for unsupported type: {} field: {}",
-            type.getSimpleName(), fieldName);
+        //AutismClientAddon.LOG.error("[PackUtil] No safe default found for unsupported type: {} field: {}",
+            // type.getSimpleName(), fieldName);
         return null;
     }
 
@@ -941,7 +939,7 @@ public class PackUtilClipboardHelper {
             NbtIo.writeCompressed(rootTag, outputStream);
             return Base64.getEncoder().encodeToString(outputStream.toByteArray());
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to serialize queue to Base64", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to serialize queue to Base64", e);
             return null;
         }
     }
@@ -963,10 +961,10 @@ public class PackUtilClipboardHelper {
                 }
             }
 
-            AutismClientAddon.LOG.info("[PackUtil] Deserialized {} packets from Base64", queue.size());
+            //AutismClientAddon.LOG.info("[PackUtil] Deserialized {} packets from Base64", queue.size());
             return queue.isEmpty() ? null : queue;
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil] Failed to deserialize queue from Base64", e);
+            //AutismClientAddon.LOG.error("[PackUtil] Failed to deserialize queue from Base64", e);
             return null;
         }
     }

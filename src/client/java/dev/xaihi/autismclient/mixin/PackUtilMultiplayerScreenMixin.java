@@ -1,11 +1,11 @@
 package dev.xaihi.autismclient.mixin;
 
-import autismclient.gui.packui.PackUiOverlayButton;
-import autismclient.gui.packui.PackUiText;
-import autismclient.gui.packui.PackUiTheme;
-import autismclient.gui.packui.PackUiTone;
-import autismclient.gui.screen.PackUtilAccountsScreen;
-import autismclient.gui.screen.PackUtilProxiesScreen;
+import dev.xaihi.autismclient.common.gui.packui.PackUiOverlayButton;
+import dev.xaihi.autismclient.common.gui.packui.PackUiText;
+import dev.xaihi.autismclient.common.gui.packui.PackUiTheme;
+import dev.xaihi.autismclient.common.gui.packui.PackUiTone;
+import dev.xaihi.autismclient.common.gui.screen.PackUtilAccountsScreen;
+import dev.xaihi.autismclient.common.gui.screen.PackUtilProxiesScreen;
 import dev.xaihi.autismclient.common.util.PackUtilUiScale;
 import dev.xaihi.autismclient.common.util.PackUtilProxy;
 import dev.xaihi.autismclient.common.util.PackUtilProxyManager;

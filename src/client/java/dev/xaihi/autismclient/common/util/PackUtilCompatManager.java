@@ -48,7 +48,7 @@ public final class PackUtilCompatManager {
                 if (converted != null) macros.add(converted);
             }
         } catch (Exception e) {
-            AutismClientAddon.LOG.warn("[PackUtil] Failed to read Meteor macros reflectively.", e);
+            //AutismClientAddon.LOG.warn("[PackUtil] Failed to read Meteor macros reflectively.", e);
         }
         return macros;
     }
@@ -89,7 +89,7 @@ public final class PackUtilCompatManager {
             }
             names.sort(String::compareToIgnoreCase);
         } catch (Exception e) {
-            AutismClientAddon.LOG.warn("[PackUtil] Failed to read Meteor modules reflectively.", e);
+            //AutismClientAddon.LOG.warn("[PackUtil] Failed to read Meteor modules reflectively.", e);
         }
         return names;
     }
@@ -128,7 +128,7 @@ public final class PackUtilCompatManager {
             }
             return true;
         } catch (Exception e) {
-            AutismClientAddon.LOG.warn("[PackUtil] Failed to toggle Meteor module '{}' reflectively.", moduleName, e);
+            //AutismClientAddon.LOG.warn("[PackUtil] Failed to toggle Meteor module '{}' reflectively.", moduleName, e);
             return false;
         }
     }
@@ -154,7 +154,7 @@ public final class PackUtilCompatManager {
             invokeMethod(process, "setGoalAndPath", new Class<?>[]{goalType}, new Object[]{goal});
             return true;
         } catch (Throwable t) {
-            AutismClientAddon.LOG.warn("[PackUtil] Failed to start Baritone goto reflectively, falling back to chat command.", t);
+            //AutismClientAddon.LOG.warn("[PackUtil] Failed to start Baritone goto reflectively, falling back to chat command.", t);
             return sendBaritoneCommand(mc, String.format("#goto %d %d %d", x, y, z));
         }
     }
@@ -177,7 +177,7 @@ public final class PackUtilCompatManager {
             invokeMethod(process, "mineByName", new Class<?>[]{String[].class}, new Object[]{sanitized.toArray(String[]::new)});
             return true;
         } catch (Throwable t) {
-            AutismClientAddon.LOG.warn("[PackUtil] Failed to start Baritone mine reflectively, falling back to chat command.", t);
+            //AutismClientAddon.LOG.warn("[PackUtil] Failed to start Baritone mine reflectively, falling back to chat command.", t);
             return sendBaritoneCommand(mc, "#mine " + String.join(" ", sanitized));
         }
     }
@@ -229,7 +229,7 @@ public final class PackUtilCompatManager {
             invokeMethod(pathing, "cancelEverything");
             stoppedReflectively = true;
         } catch (Throwable t) {
-            AutismClientAddon.LOG.warn("[PackUtil] Failed to stop Baritone reflectively, falling back to chat command.", t);
+            //AutismClientAddon.LOG.warn("[PackUtil] Failed to stop Baritone reflectively, falling back to chat command.", t);
         }
 
         if (!stoppedReflectively) {
@@ -300,7 +300,7 @@ public final class PackUtilCompatManager {
                         }
                     }
                 } catch (Exception e) {
-                    AutismClientAddon.LOG.warn("[PackUtil] Settings iteration fallback failed.", e);
+                    //AutismClientAddon.LOG.warn("[PackUtil] Settings iteration fallback failed.", e);
                 }
             }
 
@@ -346,7 +346,7 @@ public final class PackUtilCompatManager {
 
             return macro;
         } catch (Exception e) {
-            AutismClientAddon.LOG.warn("[PackUtil] Error converting Meteor macro.", e);
+            //AutismClientAddon.LOG.warn("[PackUtil] Error converting Meteor macro.", e);
             return null;
         }
     }

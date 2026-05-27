@@ -10,9 +10,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import autismclient.modules.PackUtilModule;
-import autismclient.gui.packui.PackUiBannerRenderer;
-import autismclient.gui.packui.PackUiTheme;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.gui.packui.PackUiBannerRenderer;
+import dev.xaihi.autismclient.common.gui.packui.PackUiTheme;
 import dev.xaihi.autismclient.common.util.PackUtilClientMessaging;
 import dev.xaihi.autismclient.common.util.PackUtilColors;
 import dev.xaihi.autismclient.common.util.PackUtilCustomFilterOverlay;
@@ -113,7 +113,7 @@ public abstract class PackUtilHandledScreenMixin<T extends AbstractContainerMenu
             manager.register(macroEditorOverlay);
         }
 
-        manager.register(autismclient.gui.macro.editor.ActionEditorOverlay.getSharedOverlay());
+        manager.register(dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay.getSharedOverlay());
 
         PackUtilModule packutilModule = PackUtilModule.get();
         if (packutilModule != null) {
@@ -127,7 +127,7 @@ public abstract class PackUtilHandledScreenMixin<T extends AbstractContainerMenu
         keybindOverlay.restoreLayout();
         manager.register(keybindOverlay);
 
-        serverInfoOverlay = autismclient.modules.PackUtilModule.get().getServerDataOverlay();
+        serverInfoOverlay = dev.xaihi.autismclient.common.modules.PackUtilModule.get().getServerDataOverlay();
         manager.register(serverInfoOverlay);
 
         launcherOverlay = new PackUtilLauncherOverlay(macroListOverlay, fabricatorOverlay, lanSyncOverlay, queueEditorOverlay, packetLoggerOverlay, customFilterOverlay);
@@ -212,8 +212,8 @@ public abstract class PackUtilHandledScreenMixin<T extends AbstractContainerMenu
 
     @Unique
     private void renderMacroCaptureBanner(GuiGraphicsExtractor context) {
-        autismclient.gui.macro.editor.ActionEditorOverlay actionEditor =
-                autismclient.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
+        dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay actionEditor =
+                dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
         boolean macroCapture = macroEditorOverlay != null && macroEditorOverlay.shouldRenderAbstractContainerScreenCaptureBanner();
         boolean actionCapture = actionEditor != null && actionEditor.shouldRenderAbstractContainerScreenCaptureBanner();
         if (!macroCapture && !actionCapture) return;
@@ -237,11 +237,11 @@ public abstract class PackUtilHandledScreenMixin<T extends AbstractContainerMenu
         }
 
         int maxTextWidth = Math.max(
-            autismclient.gui.packui.PackUiText.width(this.font, title, PACKUI_THEME.fontFor(autismclient.gui.packui.PackUiTone.LABEL), PACKUI_THEME.color(autismclient.gui.packui.PackUiTone.BODY)),
-            autismclient.gui.packui.PackUiText.width(this.font, instruction, PACKUI_THEME.fontFor(autismclient.gui.packui.PackUiTone.BODY), PACKUI_THEME.color(autismclient.gui.packui.PackUiTone.BODY))
+            dev.xaihi.autismclient.common.gui.packui.PackUiText.width(this.font, title, PACKUI_THEME.fontFor(dev.xaihi.autismclient.common.gui.packui.PackUiTone.LABEL), PACKUI_THEME.color(dev.xaihi.autismclient.common.gui.packui.PackUiTone.BODY)),
+            dev.xaihi.autismclient.common.gui.packui.PackUiText.width(this.font, instruction, PACKUI_THEME.fontFor(dev.xaihi.autismclient.common.gui.packui.PackUiTone.BODY), PACKUI_THEME.color(dev.xaihi.autismclient.common.gui.packui.PackUiTone.BODY))
         );
         if (!hover.isEmpty()) {
-            maxTextWidth = Math.max(maxTextWidth, autismclient.gui.packui.PackUiText.width(this.font, hover, PACKUI_THEME.fontFor(autismclient.gui.packui.PackUiTone.MUTED), PACKUI_THEME.color(autismclient.gui.packui.PackUiTone.MUTED)));
+            maxTextWidth = Math.max(maxTextWidth, dev.xaihi.autismclient.common.gui.packui.PackUiText.width(this.font, hover, PACKUI_THEME.fontFor(dev.xaihi.autismclient.common.gui.packui.PackUiTone.MUTED), PACKUI_THEME.color(dev.xaihi.autismclient.common.gui.packui.PackUiTone.MUTED)));
         }
 
         int screenWidth = PackUtilUiScale.getVirtualScreenWidth();
@@ -260,8 +260,8 @@ public abstract class PackUtilHandledScreenMixin<T extends AbstractContainerMenu
         if (!isPackUtilActive()) return;
         PackUtilInventoryMoveHelper.releaseMovementKeysIfSafe();
 
-        autismclient.gui.macro.editor.ActionEditorOverlay actionEditor =
-                autismclient.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
+        dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay actionEditor =
+                dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
         boolean skipTransientCaptureSave = actionEditor != null && actionEditor.hasActiveCaptureSession();
 
         if (!skipTransientCaptureSave) {
@@ -351,8 +351,8 @@ public abstract class PackUtilHandledScreenMixin<T extends AbstractContainerMenu
                 return;
             }
 
-            autismclient.gui.macro.editor.ActionEditorOverlay actionEditor =
-                    autismclient.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
+            dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay actionEditor =
+                    dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
             if (actionEditor != null && actionEditor.wantsItemSlotCapture()
                     && actionEditor.onInventorySlotCapture(hoveredSlot, captureItemName, captureRegistryId)) {
                 cir.setReturnValue(true);
@@ -377,8 +377,8 @@ public abstract class PackUtilHandledScreenMixin<T extends AbstractContainerMenu
                 return;
             }
 
-            autismclient.gui.macro.editor.ActionEditorOverlay actionEditor =
-                    autismclient.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
+            dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay actionEditor =
+                    dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
             if (actionEditor != null && actionEditor.cancelCaptureIfActive()) {
                 cir.setReturnValue(true);
                 return;
@@ -396,8 +396,8 @@ public abstract class PackUtilHandledScreenMixin<T extends AbstractContainerMenu
                 return;
             }
 
-            autismclient.gui.macro.editor.ActionEditorOverlay actionEditor =
-                    autismclient.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
+            dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay actionEditor =
+                    dev.xaihi.autismclient.common.gui.macro.editor.ActionEditorOverlay.getSharedOverlayIfExists();
             if (actionEditor != null && actionEditor.cancelCaptureIfActive()) {
                 cir.setReturnValue(true);
             }

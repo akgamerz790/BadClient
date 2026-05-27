@@ -3234,7 +3234,7 @@ public class MacroExecutor {
                     || type == Character.ENCLOSING_MARK
                     || type == Character.FORMAT
                     || type == Character.CONTROL
-                    || type == Character.public_USE
+                    || type == Character.PRIVATE_USE
                     || type == Character.SURROGATE) {
                 continue;
             }

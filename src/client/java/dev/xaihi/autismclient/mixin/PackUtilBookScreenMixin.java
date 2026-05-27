@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.PackUtilClientMessaging;
 import dev.xaihi.autismclient.common.util.PackUtilCustomFilterOverlay;
 import dev.xaihi.autismclient.common.util.PackUtilCustomFilterPresetOverlay;
@@ -96,7 +96,7 @@ public abstract class PackUtilBookScreenMixin extends Screen implements PackUtil
         keybindOverlay.restoreLayout();
         manager.register(keybindOverlay);
 
-        serverInfoOverlay = autismclient.modules.PackUtilModule.get().getServerDataOverlay();
+        serverInfoOverlay = dev.xaihi.autismclient.common.modules.PackUtilModule.get().getServerDataOverlay();
         manager.register(serverInfoOverlay);
 
         launcherOverlay = new PackUtilLauncherOverlay(macroListOverlay, null, lanSyncOverlay, queueEditorOverlay, packetLoggerOverlay, customFilterOverlay);
@@ -137,7 +137,7 @@ public abstract class PackUtilBookScreenMixin extends Screen implements PackUtil
         if ((Object) this instanceof LecternScreen) {
             double mouseX = PackUtilUiScale.toVirtual(click.x());
             double mouseY = PackUtilUiScale.toVirtual(click.y());
-            for (autismclient.gui.packui.PackUiScreenButton button : PackUtilLecternButtons.build(MC, queueEditorOverlay)) {
+            for (dev.xaihi.autismclient.common.gui.packui.PackUiScreenButton button : PackUtilLecternButtons.build(MC, queueEditorOverlay)) {
                 if (button.click(mouseX, mouseY, click.button())) {
                     cir.setReturnValue(true);
                     return;

@@ -1745,7 +1745,7 @@ public class PackUtilFabricatorOverlay extends PackUtilOverlayBase {
 
     public AbstractContainerMenu getActiveHandler() {
         if (MC.player != null && MC.player.containerMenu != null) return MC.player.containerMenu;
-        return parentScreen != null ? ((dev.xaihi.autismclient.mixin.accessor.AbstractContainerScreenAccessor) parentScreen).packutil$getMenu() : null;
+        return parentScreen != null ? ((dev.xaihi.autismclient.common.mixin.accessor.AbstractContainerScreenAccessor) parentScreen).packutil$getMenu() : null;
     }
 
     public Integer parseEnteredSlot() {

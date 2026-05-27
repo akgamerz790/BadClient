@@ -1,4 +1,4 @@
-package autismclient.mixin.accessor;
+package dev.xaihi.autismclient.common.mixin.accessor;
 
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.AbstractContainerMenu;

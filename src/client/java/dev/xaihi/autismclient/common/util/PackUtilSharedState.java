@@ -580,7 +580,7 @@ public final class PackUtilSharedState {
                             }
                             dev.xaihi.autismclient.common.util.PackUtilPacketSender.send(packetToSend);
                         } else {
-                            AutismClientAddon.LOG.warn("[PackUtil] Skipped sending invalid C2S packet during flush: {}", qp.packet.getClass().getName());
+                            //AutismClientAddon.LOG.warn("[PackUtil] Skipped sending invalid C2S packet during flush: {}", qp.packet.getClass().getName());
                         }
                     }
                 } finally {
@@ -614,8 +614,8 @@ public final class PackUtilSharedState {
                         }
                         networkHandler.getConnection().send(packetToSend, null);
                     } else {
-                        AutismClientAddon.LOG.warn("[PackUtil] Skipped invalid C2S packet during bypass flush: {}",
-                            qp.packet.getClass().getName());
+                        //AutismClientAddon.LOG.warn("[PackUtil] Skipped invalid C2S packet during bypass flush: {}",
+                            // qp.packet.getClass().getName());
                     }
                 }
             } finally {
@@ -660,10 +660,10 @@ public final class PackUtilSharedState {
         markQueueRenderDirty();
 
         if (skipped > 0 || deferredClickSlot > 0) {
-            AutismClientAddon.LOG.warn("[PackUtil] Regenerated {} packets, skipped {}, deferred {} ClickSlot (IDs preserved).",
-                newPackets.size() - deferredClickSlot, skipped, deferredClickSlot);
+            //AutismClientAddon.LOG.warn("[PackUtil] Regenerated {} packets, skipped {}, deferred {} ClickSlot (IDs preserved).",
+                // newPackets.size() - deferredClickSlot, skipped, deferredClickSlot);
         } else {
-            AutismClientAddon.LOG.info("[PackUtil] Regenerated {} queued packets (IDs preserved).", newPackets.size());
+            //AutismClientAddon.LOG.info("[PackUtil] Regenerated {} queued packets (IDs preserved).", newPackets.size());
         }
     }
 
@@ -703,7 +703,7 @@ public final class PackUtilSharedState {
                     qp.markAsSent();
                     toRemove.add(qp);
                 } else {
-                        AutismClientAddon.LOG.warn("[PackUtil] Skipped sending invalid C2S packet: {}", qp.packet.getClass().getName());
+                        //AutismClientAddon.LOG.warn("[PackUtil] Skipped sending invalid C2S packet: {}", qp.packet.getClass().getName());
 
                         qp.markAsSent();
                         toRemove.add(qp);
@@ -711,7 +711,7 @@ public final class PackUtilSharedState {
                 } catch (Exception e) {
                     qp.markAsSent();
                     toRemove.add(qp);
-                    AutismClientAddon.LOG.error("[PackUtil] Failed to send queued packet: {}", qp.packet.getClass().getName(), e);
+                    //AutismClientAddon.LOG.error("[PackUtil] Failed to send queued packet: {}", qp.packet.getClass().getName(), e);
                 } finally {
                     isFlushing = false;
                 }
@@ -1512,7 +1512,7 @@ public final class PackUtilSharedState {
         if (!gbreakCaptureMode) return;
 
         gbreakPacketCount++;
-        AutismClientAddon.LOG.info("[GBreak] Packet #{}: {}", gbreakPacketCount, packet.getClass().getSimpleName());
+        //AutismClientAddon.LOG.info("[GBreak] Packet #{}: {}", gbreakPacketCount, packet.getClass().getSimpleName());
 
         if (gbreakPacketCount == 2) {
 

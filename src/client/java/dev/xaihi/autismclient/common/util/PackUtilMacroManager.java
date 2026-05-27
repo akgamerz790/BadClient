@@ -120,7 +120,7 @@ public class PackUtilMacroManager {
             tag.put("macros", list);
             NbtIo.write(tag, saveFile.toPath());
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to save PackUtil macros", e);
+            //AutismClientAddon.LOG.error("Failed to save PackUtil macros", e);
         }
 
         if (PackUtilLANSync.getInstance().isInSession()) {
@@ -146,7 +146,7 @@ public class PackUtilMacroManager {
             }
             revision++;
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to load PackUtil macros", e);
+            //AutismClientAddon.LOG.error("Failed to load PackUtil macros", e);
         }
     }
 }

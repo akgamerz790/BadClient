@@ -156,7 +156,7 @@ public class PackUtilPresetManager {
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§aReceived preset from " + sender + ": " + preset.name);
             return true;
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to import shared preset", e);
+            //AutismClientAddon.LOG.error("Failed to import shared preset", e);
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§cFailed to import preset: " + e.getMessage());
             return false;
         }
@@ -311,14 +311,14 @@ public class PackUtilPresetManager {
                     preset.name = file.getName().replace(".json", "");
                 }
                 if (isReservedPresetName(preset.name)) {
-                    AutismClientAddon.LOG.warn("Ignoring user preset with reserved built-in name: {}", preset.name);
+                    //AutismClientAddon.LOG.warn("Ignoring user preset with reserved built-in name: {}", preset.name);
                     continue;
                 }
                 if (preset.c2sPackets == null) preset.c2sPackets = new LinkedHashSet<>();
                 if (preset.s2cPackets == null) preset.s2cPackets = new LinkedHashSet<>();
                 entries.add(new PresetEntry(preset, false));
             } catch (IOException e) {
-                AutismClientAddon.LOG.error("Failed to read preset file {}", file.getName(), e);
+                //AutismClientAddon.LOG.error("Failed to read preset file {}", file.getName(), e);
             }
         }
 
@@ -393,7 +393,7 @@ public class PackUtilPresetManager {
             if (packetClass != null && pool.contains(packetClass)) {
                 resolved.add(packetClass);
             } else {
-                AutismClientAddon.LOG.warn("Unknown packet name in preset: {}", packetName);
+                //AutismClientAddon.LOG.warn("Unknown packet name in preset: {}", packetName);
             }
         }
         return resolved;
@@ -405,7 +405,7 @@ public class PackUtilPresetManager {
             gson.toJson(preset, writer);
             if (notify) PackUtilClientMessaging.sendPrefixed("Ã‚Â§aSaved preset: " + preset.name);
         } catch (IOException e) {
-            AutismClientAddon.LOG.error("Failed to save preset", e);
+            //AutismClientAddon.LOG.error("Failed to save preset", e);
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§cFailed to save preset: " + e.getMessage());
         }
     }

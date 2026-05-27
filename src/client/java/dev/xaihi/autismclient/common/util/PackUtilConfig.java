@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.common.util;
 
-import dev.xaihi.autismclient.addons.AutismClientAddon;
+import dev.xaihi.autismclient.client.addons.AutismClientAddon;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -68,7 +68,7 @@ public final class PackUtilConfig {
             config.applyRuntimeDefaults();
             return config;
         } catch (IOException e) {
-            AutismClientAddon.LOG.error("Failed to load PackUtil config", e);
+            //AutismClientAddon.LOG.error("Failed to load PackUtil config", e);
             return new PackUtilConfig();
         }
     }
@@ -79,7 +79,7 @@ public final class PackUtilConfig {
         try (FileWriter writer = new FileWriter(FILE)) {
             GSON.toJson(this, writer);
         } catch (IOException e) {
-            AutismClientAddon.LOG.error("Failed to save PackUtil config", e);
+            //AutismClientAddon.LOG.error("Failed to save PackUtil config", e);
         }
     }
 

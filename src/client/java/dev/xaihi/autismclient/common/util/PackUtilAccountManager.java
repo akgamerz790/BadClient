@@ -43,7 +43,7 @@ public final class PackUtilAccountManager implements Iterable<PackUtilAccount> {
                 if (element instanceof CompoundTag compoundTag) accounts.add(new PackUtilAccount().fromTag(compoundTag));
             }
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to load PackUtil accounts", e);
+            //AutismClientAddon.LOG.error("Failed to load PackUtil accounts", e);
         }
     }
 
@@ -55,7 +55,7 @@ public final class PackUtilAccountManager implements Iterable<PackUtilAccount> {
             tag.put("accounts", list);
             NbtIo.write(tag, saveFile().toPath());
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("Failed to save PackUtil accounts", e);
+            //AutismClientAddon.LOG.error("Failed to save PackUtil accounts", e);
         }
     }
 

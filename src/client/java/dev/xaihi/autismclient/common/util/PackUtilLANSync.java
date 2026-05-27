@@ -158,7 +158,7 @@ public class PackUtilLANSync {
         if (running.get()) return;
         running.set(true);
         PackUtilClientMessaging.sendPrefixed("Ã‚Â§aLAN Sync started (TCP mode on port " + TCP_PORT + ").");
-        AutismClientAddon.LOG.info("[PackUtil-LAN] Started in TCP-only mode on port {}", TCP_PORT);
+        //AutismClientAddon.LOG.info("[PackUtil-LAN] Started in TCP-only mode on port {}", TCP_PORT);
     }
 
     public void stop() {
@@ -225,7 +225,7 @@ public class PackUtilLANSync {
 
         lastHostIp = (hostIp != null && !hostIp.isBlank()) ? hostIp : "127.0.0.1";
         connectToTcpServer(lastHostIp);
-        AutismClientAddon.LOG.info("[TCP] Connecting to {}:{}", lastHostIp, TCP_PORT);
+        //AutismClientAddon.LOG.info("[TCP] Connecting to {}:{}", lastHostIp, TCP_PORT);
 
         fireCallback(onClientJoined);
         fireCallback(onSessionStateChanged);
@@ -325,7 +325,7 @@ public class PackUtilLANSync {
         clientsReady.add(myUsername);
         setSyncState(SyncState.PREPARING);
 
-        AutismClientAddon.LOG.info("[Sync] Initiating GO-sync: execId={}", executionId);
+        //AutismClientAddon.LOG.info("[Sync] Initiating GO-sync: execId={}", executionId);
 
         String assignmentStr = "";
         if (macroAssignments != null && !macroAssignments.isEmpty()) {
@@ -352,8 +352,8 @@ public class PackUtilLANSync {
 
                 while (clientsReady.size() < expectedClients) {
                     if (System.currentTimeMillis() - waitStart > 3000) {
-                        AutismClientAddon.LOG.warn("[Sync] Timeout waiting for clients. Got {}/{}",
-                            clientsReady.size(), expectedClients);
+                        //AutismClientAddon.LOG.warn("[Sync] Timeout waiting for clients. Got {}/{}",
+                            // clientsReady.size(), expectedClients);
                         break;
                     }
                     java.util.concurrent.locks.LockSupport.parkNanos(500_000);
@@ -361,7 +361,7 @@ public class PackUtilLANSync {
 
                 setSyncState(SyncState.ALL_READY);
                 broadcastSyncState(SyncState.ALL_READY, clientsReady.size() + "/" + expectedClients + " ready");
-                AutismClientAddon.LOG.info("[Sync] All {} clients ready!", clientsReady.size());
+                //AutismClientAddon.LOG.info("[Sync] All {} clients ready!", clientsReady.size());
 
                 setSyncState(SyncState.DISPATCHING_GO);
                 byte[] goPayload = serializePacket(new LanPacket.GoPacket(sessionId, executionId));
@@ -389,12 +389,12 @@ public class PackUtilLANSync {
                             }
                         }
                     } catch (IOException e) {
-                        AutismClientAddon.LOG.warn("[Sync] Failed to send GO to {}", clientName);
+                        //AutismClientAddon.LOG.warn("[Sync] Failed to send GO to {}", clientName);
                     }
                 }
 
             } catch (Exception e) {
-                AutismClientAddon.LOG.error("[Sync] Error in GO-sync: ", e);
+                //AutismClientAddon.LOG.error("[Sync] Error in GO-sync: ", e);
                 setSyncState(SyncState.IDLE);
             }
         }, "Sync-GO-Initiator").start();
@@ -410,7 +410,7 @@ public class PackUtilLANSync {
         clientsReady.add(myUsername);
         setSyncState(SyncState.PREPARING);
 
-        AutismClientAddon.LOG.info("[Sync] Initiating queue flush GO-sync: execId={}", executionId);
+        //AutismClientAddon.LOG.info("[Sync] Initiating queue flush GO-sync: execId={}", executionId);
 
         sendTcpPacket(new LanPacket.PrepareExecutionPacket(sessionId, executionId, false,
             "", "__QUEUE_FLUSH__", myUsername));
@@ -425,8 +425,8 @@ public class PackUtilLANSync {
 
                 while (clientsReady.size() < expectedClients) {
                     if (System.currentTimeMillis() - waitStart > 3000) {
-                        AutismClientAddon.LOG.warn("[Sync] Timeout waiting for clients. Got {}/{}",
-                            clientsReady.size(), expectedClients);
+                        //AutismClientAddon.LOG.warn("[Sync] Timeout waiting for clients. Got {}/{}",
+                            // clientsReady.size(), expectedClients);
                         break;
                     }
                     java.util.concurrent.locks.LockSupport.parkNanos(500_000);
@@ -461,12 +461,12 @@ public class PackUtilLANSync {
                             }
                         }
                     } catch (IOException e) {
-                        AutismClientAddon.LOG.warn("[Sync] Failed to send GO to {}", clientName);
+                        //AutismClientAddon.LOG.warn("[Sync] Failed to send GO to {}", clientName);
                     }
                 }
 
             } catch (Exception e) {
-                AutismClientAddon.LOG.error("[Sync] Error in queue GO-sync: ", e);
+                // //AutismClientAddon.LOG.error("[Sync] Error in queue GO-sync: ", e);
                 setSyncState(SyncState.IDLE);
             }
         }, "Sync-GO-QueueFlush").start();
@@ -476,7 +476,7 @@ public class PackUtilLANSync {
                                String senderUsername, String macroAssignments) {
         if (senderUsername != null && senderUsername.equals(myUsername)) return;
 
-        AutismClientAddon.LOG.info("[Sync] Received PREPARE from {}", senderUsername);
+        //AutismClientAddon.LOG.info("[Sync] Received PREPARE from {}", senderUsername);
         peerStepProgress.clear();
 
         String myMacroName = macroName;
@@ -504,7 +504,7 @@ public class PackUtilLANSync {
         setSyncState(SyncState.PREPARING);
 
         sendTcpPacket(new LanPacket.ClientReadyPacket(sessionId, executionId, myUsername));
-        AutismClientAddon.LOG.info("[Sync] Sent READY signal");
+        //AutismClientAddon.LOG.info("[Sync] Sent READY signal");
     }
 
     public void handleClientReady(long executionId, String username) {
@@ -512,26 +512,26 @@ public class PackUtilLANSync {
         if (ctx != null && executionId == ctx.executionId) {
             clientsReady.add(username);
             broadcastSyncState(SyncState.PREPARING, clientsReady.size() + "/" + connectedClients.size() + " ready");
-            AutismClientAddon.LOG.info("[Sync] Client ready: {} (total: {})", username, clientsReady.size());
+            //AutismClientAddon.LOG.info("[Sync] Client ready: {} (total: {})", username, clientsReady.size());
         }
     }
 
     public void handleGo(long executionId) {
         SyncContext ctx = activeSyncCtx;
         if (ctx == null || executionId != ctx.executionId) {
-            AutismClientAddon.LOG.warn("[Sync] GO for wrong execId, ignoring");
+            //AutismClientAddon.LOG.warn("[Sync] GO for wrong execId, ignoring");
             return;
         }
         if (ctx.isInitiator) return;
 
         int offset = getPlayerDelayOffset(myUsername);
         if (offset > 0) {
-            AutismClientAddon.LOG.info("[Sync] Received GO! Applying {}ms offset before executing.", offset);
+            //AutismClientAddon.LOG.info("[Sync] Received GO! Applying {}ms offset before executing.", offset);
             setSyncState(SyncState.EXECUTING);
             try { Thread.sleep(offset); } catch (InterruptedException ignored) {}
             executeAction();
         } else {
-            AutismClientAddon.LOG.info("[Sync] Received GO! Executing immediately.");
+            //AutismClientAddon.LOG.info("[Sync] Received GO! Executing immediately.");
             setSyncState(SyncState.EXECUTING);
             executeAction();
         }
@@ -549,7 +549,7 @@ public class PackUtilLANSync {
                 ClientPacketListener nh = mc.getConnection();
                 if (nh != null) {
                     int count = PackUtilSharedState.get().flushDelayedPackets(nh);
-                    AutismClientAddon.LOG.info("[Sync] Queue flushed! {} packets sent", count);
+                    //AutismClientAddon.LOG.info("[Sync] Queue flushed! {} packets sent", count);
                 }
             });
         } else if (ctx.command != null && ctx.command.startsWith("__CHAT__\t")) {
@@ -562,14 +562,14 @@ public class PackUtilLANSync {
                     } else {
                         nh.sendChat(chatMsg);
                     }
-                    AutismClientAddon.LOG.info("[Sync] Chat sent: {}", chatMsg);
+                    //AutismClientAddon.LOG.info("[Sync] Chat sent: {}", chatMsg);
                 }
             });
         } else if (ctx.isMacro && ctx.macro != null) {
             mc.execute(() -> ctx.macro.execute(false));
         }
 
-        AutismClientAddon.LOG.info("[Sync] EXECUTED at {}", executedAtMs);
+        //AutismClientAddon.LOG.info("[Sync] EXECUTED at {}", executedAtMs);
 
         executionTimestamps.put(myUsername, executedAtMs);
         sendTcpPacket(new LanPacket.TcpCommandAckPacket(sessionId, myUsername, executedAtMs));
@@ -587,7 +587,7 @@ public class PackUtilLANSync {
                     }
                     calculateAndDisplaySpread();
                 } catch (Exception e) {
-                    AutismClientAddon.LOG.error("[Sync] Error calculating spread", e);
+                    //AutismClientAddon.LOG.error("[Sync] Error calculating spread", e);
                 }
             }, "Sync-SpreadCalc").start();
         }
@@ -597,7 +597,7 @@ public class PackUtilLANSync {
         executionTimestamps.put(username, timestampMs);
 
         ackReceiptTimes.put(username, System.nanoTime());
-        AutismClientAddon.LOG.info("[Sync] ACK from {}: remoteMs={}, hostReceiptNano={}", username, timestampMs, ackReceiptTimes.get(username));
+        //AutismClientAddon.LOG.info("[Sync] ACK from {}: remoteMs={}, hostReceiptNano={}", username, timestampMs, ackReceiptTimes.get(username));
     }
 
     public void calculateAndDisplaySpread() {
@@ -846,7 +846,7 @@ public class PackUtilLANSync {
             }
 
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§e" + dead + " timed out.");
-            AutismClientAddon.LOG.info("[Heartbeat] Peer timed out: {}", dead);
+            //AutismClientAddon.LOG.info("[Heartbeat] Peer timed out: {}", dead);
             fireCallback(onClientLeft);
             fireCallback(onPeerStatusChanged);
             dev.xaihi.autismclient.common.util.macro.MacroConditionRegistry.onLanStepProgress();
@@ -1116,7 +1116,7 @@ public class PackUtilLANSync {
                     break;
             }
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil-LAN] Error handling packet: {}", packet.getType(), e);
+            //AutismClientAddon.LOG.error("[PackUtil-LAN] Error handling packet: {}", packet.getType(), e);
         }
     }
 
@@ -1133,7 +1133,7 @@ public class PackUtilLANSync {
                         handleNewTcpClient(clientSocket);
                     } catch (IOException e) {
                         if (running.get() && isHost) {
-                            AutismClientAddon.LOG.warn("[TCP] Accept error: {}", e.getMessage());
+                            //AutismClientAddon.LOG.warn("[TCP] Accept error: {}", e.getMessage());
                         }
                     }
                 }
@@ -1141,9 +1141,9 @@ public class PackUtilLANSync {
             tcpAcceptThread.setDaemon(true);
             tcpAcceptThread.start();
 
-            AutismClientAddon.LOG.info("[TCP] Server started on port {}", TCP_PORT);
+            //AutismClientAddon.LOG.info("[TCP] Server started on port {}", TCP_PORT);
         } catch (IOException e) {
-            AutismClientAddon.LOG.error("[TCP] Failed to start server: {}", e.getMessage());
+            //AutismClientAddon.LOG.error("[TCP] Failed to start server: {}", e.getMessage());
         }
     }
 
@@ -1157,7 +1157,7 @@ public class PackUtilLANSync {
                 String packetSession = in.readUTF();
 
                 if (packetType == LanPacketType.SEARCH_REQUEST.getId()) {
-                    AutismClientAddon.LOG.info("[TCP] Received search request, responding with session info");
+                    //AutismClientAddon.LOG.info("[TCP] Received search request, responding with session info");
                     out.writeInt(LanPacketType.SESSION.getId());
                     out.writeUTF(sessionId);
                     new LanPacket.SessionPacket(sessionId, 0, myUsername).write(out);
@@ -1174,7 +1174,7 @@ public class PackUtilLANSync {
                     String clientUsername = joinPacket.username;
 
                     if (clientUsername == null || clientUsername.isBlank()) {
-                        AutismClientAddon.LOG.warn("[TCP] Rejected client with empty username");
+                        //AutismClientAddon.LOG.warn("[TCP] Rejected client with empty username");
                         clientSocket.close();
                         return;
                     }
@@ -1198,7 +1198,7 @@ public class PackUtilLANSync {
                         fireCallback(onPeerStatusChanged);
                     }
 
-                    AutismClientAddon.LOG.info("[TCP] Client joined: {}", clientUsername);
+                    //AutismClientAddon.LOG.info("[TCP] Client joined: {}", clientUsername);
 
                     while (running.get() && !clientSocket.isClosed()) {
                         int nextPacketType = in.readInt();
@@ -1237,7 +1237,7 @@ public class PackUtilLANSync {
                         peerStepProgress.remove(disconnectedUser);
 
                         PackUtilClientMessaging.sendPrefixed("Ã‚Â§e" + disconnectedUser + " disconnected.");
-                        AutismClientAddon.LOG.info("[TCP] Client disconnected: {}", disconnectedUser);
+                        //AutismClientAddon.LOG.info("[TCP] Client disconnected: {}", disconnectedUser);
 
                         broadcastClientList();
                         fireCallback(onClientLeft);
@@ -1265,7 +1265,7 @@ public class PackUtilLANSync {
                 clientSocket.getOutputStream().flush();
             }
         } catch (IOException e) {
-            AutismClientAddon.LOG.warn("[TCP] Failed to send client list: {}", e.getMessage());
+            //AutismClientAddon.LOG.warn("[TCP] Failed to send client list: {}", e.getMessage());
         }
     }
 
@@ -1278,7 +1278,7 @@ public class PackUtilLANSync {
                 writeMacroDataPacketsToStream(clientSocket.getOutputStream(), lock, myUsername, macro, (byte)0);
             }
         } catch (IOException e) {
-            AutismClientAddon.LOG.warn("[TCP] Failed to send macro list: {}", e.getMessage());
+            //AutismClientAddon.LOG.warn("[TCP] Failed to send macro list: {}", e.getMessage());
         }
     }
 
@@ -1297,7 +1297,7 @@ public class PackUtilLANSync {
                     out.flush();
                 }
 
-                AutismClientAddon.LOG.info("[TCP] Connected to host at {}:{}", hostIp, TCP_PORT);
+                //AutismClientAddon.LOG.info("[TCP] Connected to host at {}:{}", hostIp, TCP_PORT);
                 reconnecting = false;
 
                 sendMacroListViaConnection(out);
@@ -1318,7 +1318,7 @@ public class PackUtilLANSync {
                             }
                         }
                     } catch (IOException e) {
-                        AutismClientAddon.LOG.warn("[TCP] Disconnected from host");
+                        //AutismClientAddon.LOG.warn("[TCP] Disconnected from host");
                         attemptReconnect();
                     }
                 }, "TCP-Reader");
@@ -1326,7 +1326,7 @@ public class PackUtilLANSync {
                 tcpReadThread.start();
 
             } catch (IOException e) {
-                AutismClientAddon.LOG.warn("[TCP] Failed to connect to host: {}", e.getMessage());
+                //AutismClientAddon.LOG.warn("[TCP] Failed to connect to host: {}", e.getMessage());
                 attemptReconnect();
             }
         }, "TCP-Connect").start();
@@ -1353,7 +1353,7 @@ public class PackUtilLANSync {
                 if (!reconnecting || !running.get() || lastHostIp == null) return;
 
                 attempt++;
-                AutismClientAddon.LOG.info("[TCP] Reconnect attempt {}...", attempt);
+                //AutismClientAddon.LOG.info("[TCP] Reconnect attempt {}...", attempt);
 
                 try {
                     Socket testSocket = new Socket();
@@ -1368,7 +1368,7 @@ public class PackUtilLANSync {
                     PackUtilClientMessaging.sendPrefixed("Ã‚Â§aReconnected to session!");
                     return;
                 } catch (IOException e) {
-                    AutismClientAddon.LOG.warn("[TCP] Reconnect attempt {} failed", attempt);
+                    //AutismClientAddon.LOG.warn("[TCP] Reconnect attempt {} failed", attempt);
                 }
 
                 backoffMs = Math.min(backoffMs * 2, 16_000);
@@ -1387,7 +1387,7 @@ public class PackUtilLANSync {
                 }
             }
         } catch (IOException e) {
-            AutismClientAddon.LOG.warn("[TCP] Failed to send macro list: {}", e.getMessage());
+            //AutismClientAddon.LOG.warn("[TCP] Failed to send macro list: {}", e.getMessage());
         }
     }
 
@@ -1448,7 +1448,7 @@ public class PackUtilLANSync {
                 }
             }
         } catch (IOException e) {
-            AutismClientAddon.LOG.warn("[TCP] Failed to send packet: {}", e.getMessage());
+            //AutismClientAddon.LOG.warn("[TCP] Failed to send packet: {}", e.getMessage());
         }
     }
 
@@ -1473,7 +1473,7 @@ public class PackUtilLANSync {
                 }
             }
         } catch (IOException e) {
-            AutismClientAddon.LOG.warn("[TCP] Failed to relay packet: {}", e.getMessage());
+            //AutismClientAddon.LOG.warn("[TCP] Failed to relay packet: {}", e.getMessage());
         }
     }
 
@@ -1494,7 +1494,7 @@ public class PackUtilLANSync {
             tcpClientWriteLocks.clear();
             pendingMacroTransfers.clear();
         } catch (IOException e) {
-            AutismClientAddon.LOG.warn("[TCP] Stop error: {}", e.getMessage());
+            //AutismClientAddon.LOG.warn("[TCP] Stop error: {}", e.getMessage());
         }
     }
 
@@ -1538,7 +1538,7 @@ public class PackUtilLANSync {
                 broadcastMacroList();
             }
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil-LAN] Failed to check macro list changes", e);
+            //AutismClientAddon.LOG.error("[PackUtil-LAN] Failed to check macro list changes", e);
         }
     }
 
@@ -1644,7 +1644,7 @@ public class PackUtilLANSync {
                 relayTcpPacketToClients(new LanPacket.MacroDataPacket(sessionId, sender, macro.name, p.nbtData, p.sourceType), sender);
             }
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil-LAN] Failed to deserialize macro", e);
+            //AutismClientAddon.LOG.error("[PackUtil-LAN] Failed to deserialize macro", e);
         }
     }
 
@@ -1765,7 +1765,7 @@ public class PackUtilLANSync {
             PackUtilSharedState.get().setDelayedPackets(receivedQueue);
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§aReceived queue: " + receivedQueue.size() + " packets");
         } catch (Exception e) {
-            AutismClientAddon.LOG.error("[PackUtil-LAN] Failed to process queue sync", e);
+            //AutismClientAddon.LOG.error("[PackUtil-LAN] Failed to process queue sync", e);
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§cFailed to receive queue");
         }
     }
@@ -1811,12 +1811,12 @@ public class PackUtilLANSync {
         if (senderUsername == null || senderUsername.equals(myUsername)) return;
 
         if (!isHost) {
-            AutismClientAddon.LOG.warn("[Sync] Non-host received REQUEST_SYNC from {} Ã¢â‚¬â€ ignoring", senderUsername);
+            //AutismClientAddon.LOG.warn("[Sync] Non-host received REQUEST_SYNC from {} Ã¢â‚¬â€ ignoring", senderUsername);
             return;
         }
 
-        AutismClientAddon.LOG.info("[Sync] Received sync request from {}: isMacro={}, name={}, cmd={}",
-            senderUsername, isMacro, macroName, command);
+        //AutismClientAddon.LOG.info("[Sync] Received sync request from {}: isMacro={}, name={}, cmd={}",
+            // senderUsername, isMacro, macroName, command);
 
         if ("__QUEUE_FLUSH__".equals(command)) {
             initiateGoSyncForQueue();
@@ -1860,7 +1860,7 @@ public class PackUtilLANSync {
         ClientInfo info = connectedClients.get(targetUsername);
         if (info != null) {
             info.delayOffsetMs = Math.max(0, offsetMs);
-            AutismClientAddon.LOG.info("[Sync] Offset for {} set to {}ms by {}", targetUsername, offsetMs, senderUsername);
+            //AutismClientAddon.LOG.info("[Sync] Offset for {} set to {}ms by {}", targetUsername, offsetMs, senderUsername);
         }
 
         if (isHost) {
@@ -2046,7 +2046,7 @@ public class PackUtilLANSync {
         PackUtilMacroManager.get().save();
 
         PackUtilClientMessaging.sendPrefixed("Ã‚Â§aImported macro: " + newName);
-        AutismClientAddon.LOG.info("[PackUtil-LAN] Imported macro '{}' from {}", newName, clientUsername);
+        //AutismClientAddon.LOG.info("[PackUtil-LAN] Imported macro '{}' from {}", newName, clientUsername);
     }
 
     public void broadcastAssignments(Map<String, String> assignments) {

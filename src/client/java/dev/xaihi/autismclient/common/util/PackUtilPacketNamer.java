@@ -1,5 +1,7 @@
 package dev.xaihi.autismclient.common.util;
 
+import dev.xaihi.autismclient.common.util.PackUtilPacketRegistry;
+
 import net.minecraft.network.protocol.Packet;
 
 public class PackUtilPacketNamer {

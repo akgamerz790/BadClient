@@ -1,6 +1,6 @@
 package dev.xaihi.autismclient.mixin;
 
-import autismclient.gui.packui.PackUiTextMeshUniforms;
+import dev.xaihi.autismclient.common.gui.packui.PackUiTextMeshUniforms;
 import com.mojang.blaze3d.TracyFrameCapture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import org.spongepowered.asm.mixin.Mixin;

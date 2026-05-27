@@ -6,10 +6,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import autismclient.gui.packui.PackUiBannerRenderer;
-import autismclient.gui.packui.PackUiText;
-import autismclient.gui.packui.PackUiTheme;
-import autismclient.modules.PackUtilModule;
+import dev.xaihi.autismclient.common.gui.packui.PackUiBannerRenderer;
+import dev.xaihi.autismclient.common.gui.packui.PackUiText;
+import dev.xaihi.autismclient.common.gui.packui.PackUiTheme;
+import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.PackUtilMacroProgressRenderer;
 import dev.xaihi.autismclient.common.util.PackUtilOverlayManager;
 import dev.xaihi.autismclient.common.util.PackUtilQueueRenderer;
@@ -72,10 +72,10 @@ public abstract class PackUtilInGameHudMixin {
                 }
                 line2 = line2.replaceAll("\u00a7.", "");
                 int boxWidth = Math.min(sw - 16, Math.max(270, Math.max(
-                    autismclient.gui.packui.PackUiText.width(MC.font, title, PACKUI_THEME.fontFor(autismclient.gui.packui.PackUiTone.LABEL), PACKUI_THEME.color(autismclient.gui.packui.PackUiTone.BODY)),
+                    dev.xaihi.autismclient.common.gui.packui.PackUiText.width(MC.font, title, PACKUI_THEME.fontFor(dev.xaihi.autismclient.common.gui.packui.PackUiTone.LABEL), PACKUI_THEME.color(dev.xaihi.autismclient.common.gui.packui.PackUiTone.BODY)),
                     Math.max(
-                        autismclient.gui.packui.PackUiText.width(MC.font, line1, PACKUI_THEME.fontFor(autismclient.gui.packui.PackUiTone.BODY), PACKUI_THEME.color(autismclient.gui.packui.PackUiTone.BODY)),
-                        line2.isEmpty() ? 0 : autismclient.gui.packui.PackUiText.width(MC.font, line2, PACKUI_THEME.fontFor(autismclient.gui.packui.PackUiTone.MUTED), PACKUI_THEME.color(autismclient.gui.packui.PackUiTone.MUTED))
+                        dev.xaihi.autismclient.common.gui.packui.PackUiText.width(MC.font, line1, PACKUI_THEME.fontFor(dev.xaihi.autismclient.common.gui.packui.PackUiTone.BODY), PACKUI_THEME.color(dev.xaihi.autismclient.common.gui.packui.PackUiTone.BODY)),
+                        line2.isEmpty() ? 0 : dev.xaihi.autismclient.common.gui.packui.PackUiText.width(MC.font, line2, PACKUI_THEME.fontFor(dev.xaihi.autismclient.common.gui.packui.PackUiTone.MUTED), PACKUI_THEME.color(dev.xaihi.autismclient.common.gui.packui.PackUiTone.MUTED))
                     )
                 ) + 18));
                 int boxX = (sw - boxWidth) / 2;

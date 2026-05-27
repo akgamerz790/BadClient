@@ -239,7 +239,7 @@ public class PackUtilChatField {
 
     public boolean sendChat(String message) {
         if (mc.getConnection() == null) {
-            AutismClientAddon.LOG.warn("Failed to send PackUtil chat message because network handler was null.");
+            //AutismClientAddon.LOG.warn("Failed to send PackUtil chat message because network handler was null.");
             return false;
         }
 

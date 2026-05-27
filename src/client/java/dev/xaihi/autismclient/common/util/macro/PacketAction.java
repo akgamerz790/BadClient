@@ -54,7 +54,7 @@ public class PacketAction implements MacroAction {
 
         } catch (Exception e) {
             PackUtilClientMessaging.sendPrefixed("Ã‚Â§cPacket send error: " + e.getMessage());
-            AutismClientAddon.LOG.error("[MacroExecutor] Packet action failed", e);
+            //AutismClientAddon.LOG.error("[MacroExecutor] Packet action failed", e);
         }
     }
 

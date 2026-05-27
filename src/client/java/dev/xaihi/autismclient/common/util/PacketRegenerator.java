@@ -46,8 +46,6 @@ public class PacketRegenerator {
 
                 return result;
             } catch (Exception e) {
-                AutismClientAddon.LOG.error("[PackUtil] Failed to regenerate {}: {}",
-                    original.getClass().getSimpleName(), e.getMessage());
                 return original;
             }
         }
@@ -114,7 +112,7 @@ public class PacketRegenerator {
                     net.minecraft.network.HashedStack.EMPTY
                 );
             } catch (Exception e) {
-                AutismClientAddon.LOG.error("[PackUtil] ClickSlot regeneration failed: {}", e.getMessage());
+                //AutismClientAddon.LOG.error("[PackUtil] ClickSlot regeneration failed: {}", e.getMessage());
                 return packet;
             }
         });
@@ -219,7 +217,7 @@ public class PacketRegenerator {
 
         register(ServerboundChatPacket.class, (packet, mc) -> {
 
-            AutismClientAddon.LOG.warn("[PackUtil] ServerboundChatPacket cannot be regenerated - secure chat prevents replay!");
+            //AutismClientAddon.LOG.warn("[PackUtil] ServerboundChatPacket cannot be regenerated - secure chat prevents replay!");
             return null;
         });
 
@@ -231,7 +229,7 @@ public class PacketRegenerator {
             byte[] rawBytes = PackUtilPayloadSupport.extractPayloadBytes(payload);
 
             if (channel == null || channel.isBlank()) {
-                AutismClientAddon.LOG.warn("[PackUtil] Cannot regenerate ServerboundCustomPayloadPacket Ã¢â‚¬â€ channel is blank");
+                //AutismClientAddon.LOG.warn("[PackUtil] Cannot regenerate ServerboundCustomPayloadPacket Ã¢â‚¬â€ channel is blank");
                 return null;
             }
 
