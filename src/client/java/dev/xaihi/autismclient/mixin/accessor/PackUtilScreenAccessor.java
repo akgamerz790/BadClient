@@ -1,4 +1,4 @@
-package autismclient.mixin.accessor;
+package dev.xaihi.autismclient.mixin.accessor;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;

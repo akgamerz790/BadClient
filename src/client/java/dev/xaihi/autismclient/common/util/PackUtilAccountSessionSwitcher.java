@@ -1,7 +1,7 @@
 package dev.xaihi.autismclient.common.util;
 
 import dev.xaihi.autismclient.client.addons.AutismClientAddon;
-import dev.xaihi.autismclient.common.mixin.accessor.PackUtilMinecraftAccessor;
+import dev.xaihi.autismclient.mixin.accessor.PackUtilMinecraftAccessor;
 import com.mojang.authlib.minecraft.UserApiService;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import net.minecraft.client.Minecraft;
@@ -37,7 +37,7 @@ public final class PackUtilAccountSessionSwitcher {
         try {
             Minecraft mc = Minecraft.getInstance();
             if (originalUser == null) originalUser = mc.getUser();
-            PackUtilMinecraftAccessor accessor = (PackUtilMinecraftAccessor) mc;
+            dev.xaihi.autismclient.mixin.accessor.PackUtilMinecraftAccessor accessor = (PackUtilMinecraftAccessor) mc;
             Services services = Services.create(authService, mc.gameDirectory);
             UserApiService apiService = authService.createUserApiService(user.getAccessToken());
             Path skinCachePath = mc.gameDirectory.toPath().resolve("assets").resolve("skins");

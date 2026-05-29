@@ -2,10 +2,17 @@
   "providers": [
     {
       "type": "ttf",
-      "file": "autismclient:bebas_neue/bebasneue-regular.ttf",
-      "shift": [0, 0],
-      "size": 10.5,
-      "oversample": 2.0
+      "file": "autismclient:font/bebas_neue/bebasneue-regular.ttf",
+      "size": 9.0,
+      "oversample": 4.0,
+      "shift": [0, 0]
+    },
+    {
+      "type": "bitmap",
+      "file": "minecraft:font/default.png",
+      "ascent": 7,
+      "height": 9,
+      "chars": ["\u0000-\u00ff"]
     }
   ]
 }

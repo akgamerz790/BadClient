@@ -1,7 +1,7 @@
 package dev.xaihi.autismclient.mixin;
 
 import dev.xaihi.autismclient.common.gui.packui.PackUiScreenButton;
-import autismclient.mixin.accessor.PackUtilScreenAccessor;
+import dev.xaihi.autismclient.mixin.accessor.PackUtilScreenAccessor;
 import dev.xaihi.autismclient.common.modules.PackUtilModule;
 import dev.xaihi.autismclient.common.util.PackUtilLecternButtons;
 import dev.xaihi.autismclient.common.util.PackUtilOverlayManager;

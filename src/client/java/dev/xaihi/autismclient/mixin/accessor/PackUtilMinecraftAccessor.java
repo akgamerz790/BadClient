@@ -1,4 +1,4 @@
-package dev.xaihi.autismclient.common.mixin.accessor;
+package dev.xaihi.autismclient.mixin.accessor;
 
 import com.mojang.authlib.minecraft.UserApiService;
 import com.mojang.authlib.yggdrasil.ProfileResult;

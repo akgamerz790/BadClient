@@ -1,4 +1,4 @@
-package autismclient.mixin.accessor;
+package dev.xaihi.autismclient.mixin.accessor;
 
 import net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl;
 import net.minecraft.network.Connection;

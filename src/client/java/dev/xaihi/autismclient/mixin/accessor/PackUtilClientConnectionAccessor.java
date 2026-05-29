@@ -1,4 +1,4 @@
-package autismclient.mixin.accessor;
+package dev.xaihi.autismclient.mixin.accessor;
 
 import io.netty.channel.Channel;
 import net.minecraft.network.Connection;

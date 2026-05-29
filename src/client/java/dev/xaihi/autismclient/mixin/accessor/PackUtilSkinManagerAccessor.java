@@ -1,4 +1,4 @@
-package autismclient.mixin.accessor;
+package dev.xaihi.autismclient.mixin.accessor;
 
 public final class PackUtilSkinManagerAccessor {
     private PackUtilSkinManagerAccessor() {

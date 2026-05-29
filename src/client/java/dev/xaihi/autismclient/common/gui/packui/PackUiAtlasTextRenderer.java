@@ -24,7 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 final class PackUiAtlasTextRenderer {
-    public static final String PACK_UI_FONT_RESOURCE_PATH = "/assets/autismclient/font/dm_sans/pack_ui_regular.ttf";
+    // This was the Fix i spent hours :wilted_flower: discord aah emoji markdown lol
+    public static final String PACK_UI_FONT_RESOURCE_PATH = "/assets/autismclient/font/bebas_neue/bebasneue-regular.ttf";
     public static final String FONT_RESOURCE_PATH = PACK_UI_FONT_RESOURCE_PATH;
     public static final int ATLAS_SIZE = 2048;
     public static final int[] RANGE_STARTS = {32, 160, 256, 880, 1024, 8734};
