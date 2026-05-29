@@ -1,0 +1,43 @@
+{
+	"required": true,
+	"package": "dev.xaihi.autismclient",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"mixin.PackUtilClickableWidgetMixin",
+		"mixin.PackUtilHandledScreenMixin",
+		"mixin.PackUtilCreativeScreenMixin",
+		"mixin.PackUtilGameRendererMixin",
+		"mixin.PackUtilInGameHudMixin",
+		"mixin.PackUtilClientConnectionMixin",
+		"mixin.PackUtilClientConfigurationNetworkHandlerMixin",
+		"mixin.PackUtilClientCommonNetworkHandlerMixin",
+		"mixin.PackUtilMultiplayerScreenMixin",
+		"mixin.PackUtilSignEditScreenMixin",
+		"mixin.PackUtilScreenMixin",
+		"mixin.PackUtilLogoRendererMixin",
+		"mixin.PackUtilSplashRendererMixin",
+		"mixin.PackUtilSleepingChatScreenMixin",
+		"mixin.PackUtilBookScreenMixin",
+		"mixin.PackUtilBookEditScreenMixin",
+		"mixin.PackUtilBookSignScreenMixin",
+		"mixin.PackUtilChatScreenMixin",
+		"mixin.PackUtilRecipeBookScreenMixin",
+		"mixin.PackUtilCustomPayloadCodecMixin",
+		"mixin.PackUtilUnknownCustomPayloadMixin",
+		"mixin.PackUtilPacketEncoderMixin",
+		"mixin.PackUtilPacketDecoderMixin",
+		"mixin.PackUtilConnectionEncryptionMixin",
+		"mixin.PackUtilConnectionProxyMixin",
+		"mixin.accessor.PackUtilScreenAccessor",
+		"mixin.accessor.PackUtilHandledScreenAccessor",
+		"mixin.accessor.PackUtilClientConnectionAccessor",
+		"mixin.accessor.ClientCommonNetworkHandlerAccessor",
+		"mixin.accessor.PackUtilMinecraftAccessor",
+		"mixin.PackUtilMinecraftClientMixin",
+		"mixin.PackUtilClientPlayNetworkHandlerMixin",
+		"mixin.PackUtilRenderSystemMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
