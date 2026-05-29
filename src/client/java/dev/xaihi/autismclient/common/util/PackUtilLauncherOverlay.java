@@ -16,8 +16,11 @@ import dev.xaihi.autismclient.common.gui.packui.PackUiTextField;
 import dev.xaihi.autismclient.common.gui.packui.PackUiTheme;
 import dev.xaihi.autismclient.common.gui.packui.PackUiTone;
 import dev.xaihi.autismclient.common.gui.packui.PackUiViewport;
-import dev.xaihi.autismclient.common.mixin.accessor.PackUtilHandledScreenAccessor;
+import dev.xaihi.autismclient.mixin.accessor.PackUtilHandledScreenAccessor;
 import dev.xaihi.autismclient.common.modules.PackUtilModule;
+
+import dev.xaihi.autismclient.common.util.PackUtilInventoryHelper;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

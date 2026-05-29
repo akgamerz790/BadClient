@@ -32,15 +32,15 @@
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"autismclient.PackUtilClientMod"
+			"dev.xaihi.autismclient.client.AutismClient"
 		]
 	},
 	"mixins": [
-		"packutil.mixins.json"
+		"endfield.mixins.json"
 	],
 	"depends": {
 		"java": ">=25",
-		"minecraft": "${mc_version}",
+		"minecraft": "26.1.2",
 		"fabricloader": ">=0.18.4",
 		"fabric-api": "*"
 	}

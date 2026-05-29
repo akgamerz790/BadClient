@@ -1,4 +1,4 @@
-package dev.xaihi.autismclient.common.mixin.accessor;
+package dev.xaihi.autismclient.mixin.accessor;
 
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.Slot;
